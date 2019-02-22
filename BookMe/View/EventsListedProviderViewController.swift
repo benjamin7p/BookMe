@@ -9,11 +9,13 @@ import EventKit
 import EventKitUI
 import UIKit
 
-class EventsListedProviderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class EventsListedProviderViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
 
-    let eventStore = EKEventStore()
+    let eventStore = EventKitController.sharedContoller.eventStore
     
-    var calendars: [EKCalendar]?
+    var calendars: EKCalendar?
+    
+    var events: [EKEvent]? 
     
     @IBOutlet weak var needPermissionView: UIView!
     @IBOutlet weak var providerCalendarView: UIView!
@@ -23,10 +25,15 @@ class EventsListedProviderViewController: UIViewController, UITableViewDelegate,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        calendars = EventKitController.sharedContoller.calendar
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         checkCalendarAuthorizationStatus()
+        eventDidAdd()
+        loadEvents()
+        
     }
     
     func checkCalendarAuthorizationStatus() {
@@ -36,7 +43,7 @@ class EventsListedProviderViewController: UIViewController, UITableViewDelegate,
         case EKAuthorizationStatus.notDetermined:
             requestAccessToCalendar()
         case EKAuthorizationStatus.authorized:
-            loadCalendars()
+            EventKitController.sharedContoller.loadCalendars()
             refreshTableView()
         case EKAuthorizationStatus.restricted, EKAuthorizationStatus.denied:
             needPermissionView.fadeIn()
@@ -44,12 +51,15 @@ class EventsListedProviderViewController: UIViewController, UITableViewDelegate,
     }
     
     func requestAccessToCalendar() {
+        
         eventStore.requestAccess(to: EKEntityType.event, completion: {
             (accessGranted: Bool, error: Error?) in
             
             if accessGranted == true {
                 DispatchQueue.main.async {
-                    self.loadCalendars()
+                    EventKitController.sharedContoller.createCalendar()
+                    EventKitController.sharedContoller.loadCalendars()
+                    
                     self.refreshTableView()
                 }
             } else {
@@ -60,9 +70,9 @@ class EventsListedProviderViewController: UIViewController, UITableViewDelegate,
         })
     }
 
-    func loadCalendars() {
-        self.calendars = eventStore.calendars(for: EKEntityType.event)
-    }
+//    func loadCalendars() {
+//        self.calendars = eventStore.calendars(for: EKEntityType.event)
+//    }
     
     func refreshTableView() {
         providerCalendarView.isHidden = false
@@ -76,58 +86,81 @@ class EventsListedProviderViewController: UIViewController, UITableViewDelegate,
         
     }
     
+   
+    
+//    func calendarDidAdd() {
+//        NewCalendarController.sharedContoller.loadCalendars()
+//        self.refreshTableView()
+//    }
+    @IBAction func manageButtonTapped(_ sender: UIBarButtonItem) {
+        guard let calendars = calendars else {return}
+        EventKitController.sharedContoller.calendar = calendars
+        
+        EventKitController.sharedContoller.loadCalendars()
+        self.refreshTableView()
+        
+    }
+    
+    
+    func loadEvents() {
+        // Create a date formatter instance to use for converting a string to a date
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        // Create start and end date NSDate instances to build a predicate for which events to select
+        let startDate = dateFormatter.date(from: "2019-01-20")
+        let endDate = dateFormatter.date(from: "2019-02-23")
+        
+        if let startDate = startDate, let endDate = endDate {
+            //let eventStore = eventStore
+            
+            if let calendars = EventKitController.sharedContoller.calendar {
+            // Use an event store instance to create and properly configure an NSPredicate
+            let eventsPredicate = eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: [calendars])
+            
+            // Use the configured NSPredicate to find and return events in the store that match
+            self.events = eventStore.events(matching: eventsPredicate).sorted(){
+                (e1: EKEvent, e2: EKEvent) -> Bool in
+                return e1.startDate.compare(e2.startDate) == ComparisonResult.orderedAscending
+            }
+        }
+            refreshTableView()
+    }
+    }
+    
+    func formatDate(_ date: Date?) -> String {
+        if let date = date {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MM/dd/yyyy"
+            return dateFormatter.string(from: date)
+        }
+        
+        return ""
+    }
+    
+    func eventDidAdd() {
+        self.loadEvents()
+        providerTableView.reloadData()
+    }
+    
+    func calendarDidAdd() {
+        EventKitController.sharedContoller.loadCalendars()
+        self.refreshTableView()
+    }
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let calendars = self.calendars {
-            return calendars.count
+        if let events = self.events {
+            return events.count
         }
         return 0
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProviderCalendarCell")!
-        
-        if let calendars = self.calendars {
-            let calendarName = calendars[(indexPath as NSIndexPath).row].title
-            cell.textLabel?.text = calendarName
-        } else {
-            cell.textLabel?.text = "No calendars loaded"
-        }
+        cell.textLabel?.text = events?[(indexPath as NSIndexPath).row].title
+        cell.detailTextLabel?.text = formatDate(events?[(indexPath as NSIndexPath).row].startDate)
         return cell
-    }
-    
-    func calendarDidAdd() {
-        self.loadCalendars()
-        self.refreshTableView()
-    }
-    
-    @IBAction func manageButtonTapped(_ sender: UIBarButtonItem) {
         
-        let proBaseCalendar = EKCalendar(for: .event, eventStore: eventStore)
-        proBaseCalendar.title = "My Work Calendar"
-        let sourcesInEventStore = eventStore.sources
-    
-        proBaseCalendar.source = sourcesInEventStore.filter{
-            (source: EKSource) -> Bool in
-            source.sourceType.rawValue == EKSourceType.local.rawValue
-            }.first!
-        
-        do {
-            try eventStore.saveCalendar(proBaseCalendar, commit: true)
-            UserDefaults.standard.set(proBaseCalendar.calendarIdentifier, forKey: "My Work Calendar")
-            calendarDidAdd()
-        } catch {
-            let alert = UIAlertController(title: "Calender could not save", message: (error as NSError).localizedDescription, preferredStyle: .alert)
-            let OKAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-            alert.addAction(OKAction)
-            
-            self.present(alert, animated: true, completion: nil)
-            
-        }
-        
-
     }
-    
-    
-    
-    
 }

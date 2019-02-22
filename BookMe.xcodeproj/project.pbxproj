@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A02A47622175A2D007C7CBC /* EventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A02A47522175A2D007C7CBC /* EventController.swift */; };
+		9A0411E1221F1B6600F974ED /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0411E0221F1B6600F974ED /* Calendar.swift */; };
+		9A0411E3221F226B00F974ED /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0411E2221F226B00F974ED /* Event.swift */; };
 		9A0579E922146CA1002016C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0579E822146CA1002016C0 /* AppDelegate.swift */; };
 		9A0579EE22146CA1002016C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A0579EC22146CA1002016C0 /* Main.storyboard */; };
 		9A0579F022146CA4002016C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A0579EF22146CA4002016C0 /* Assets.xcassets */; };
@@ -15,10 +18,14 @@
 		9A057A0222147190002016C0 /* AvailabilityListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A057A0122147190002016C0 /* AvailabilityListTableViewController.swift */; };
 		9A057A042214864F002016C0 /* EventsListedProviderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A057A032214864F002016C0 /* EventsListedProviderViewController.swift */; };
 		9A057A0622148D84002016C0 /* UIViewExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A057A0522148D84002016C0 /* UIViewExtentions.swift */; };
-		9A060ACD2215BA0500FB4F31 /* ProBaseCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A060ACC2215BA0500FB4F31 /* ProBaseCalendar.swift */; };
+		9A060ACD2215BA0500FB4F31 /* EventKitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A060ACC2215BA0500FB4F31 /* EventKitController.swift */; };
+		9A060ACF2215D88D00FB4F31 /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A060ACE2215D88D00FB4F31 /* AddEventViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9A02A47522175A2D007C7CBC /* EventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventController.swift; sourceTree = "<group>"; };
+		9A0411E0221F1B6600F974ED /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
+		9A0411E2221F226B00F974ED /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		9A0579E522146CA1002016C0 /* BookMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A0579E822146CA1002016C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A0579ED22146CA1002016C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -29,7 +36,8 @@
 		9A057A0122147190002016C0 /* AvailabilityListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityListTableViewController.swift; sourceTree = "<group>"; };
 		9A057A032214864F002016C0 /* EventsListedProviderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListedProviderViewController.swift; sourceTree = "<group>"; };
 		9A057A0522148D84002016C0 /* UIViewExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtentions.swift; sourceTree = "<group>"; };
-		9A060ACC2215BA0500FB4F31 /* ProBaseCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProBaseCalendar.swift; sourceTree = "<group>"; };
+		9A060ACC2215BA0500FB4F31 /* EventKitController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventKitController.swift; sourceTree = "<group>"; };
+		9A060ACE2215D88D00FB4F31 /* AddEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +83,8 @@
 		9A0579FC22146D47002016C0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9A060ACC2215BA0500FB4F31 /* ProBaseCalendar.swift */,
+				9A0411E0221F1B6600F974ED /* Calendar.swift */,
+				9A0411E2221F226B00F974ED /* Event.swift */,
 				9A0579E822146CA1002016C0 /* AppDelegate.swift */,
 			);
 			path = Model;
@@ -88,6 +97,7 @@
 				9A057A032214864F002016C0 /* EventsListedProviderViewController.swift */,
 				9A057A0522148D84002016C0 /* UIViewExtentions.swift */,
 				9A0579EC22146CA1002016C0 /* Main.storyboard */,
+				9A060ACE2215D88D00FB4F31 /* AddEventViewController.swift */,
 				9A057A0122147190002016C0 /* AvailabilityListTableViewController.swift */,
 			);
 			path = View;
@@ -96,6 +106,8 @@
 		9A0579FE22146D93002016C0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				9A02A47522175A2D007C7CBC /* EventController.swift */,
+				9A060ACC2215BA0500FB4F31 /* EventKitController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -172,11 +184,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A0579FB22146D1B002016C0 /* IntroViewController.swift in Sources */,
+				9A0411E3221F226B00F974ED /* Event.swift in Sources */,
 				9A057A0622148D84002016C0 /* UIViewExtentions.swift in Sources */,
-				9A060ACD2215BA0500FB4F31 /* ProBaseCalendar.swift in Sources */,
+				9A060ACD2215BA0500FB4F31 /* EventKitController.swift in Sources */,
 				9A057A0222147190002016C0 /* AvailabilityListTableViewController.swift in Sources */,
 				9A0579E922146CA1002016C0 /* AppDelegate.swift in Sources */,
 				9A057A042214864F002016C0 /* EventsListedProviderViewController.swift in Sources */,
+				9A02A47622175A2D007C7CBC /* EventController.swift in Sources */,
+				9A060ACF2215D88D00FB4F31 /* AddEventViewController.swift in Sources */,
+				9A0411E1221F1B6600F974ED /* Calendar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
