@@ -10,7 +10,7 @@ import EventKitUI
 import UIKit
 
 class EventsListedProviderViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
-
+    
     let eventStore = EventKitController.sharedContoller.eventStore
     
     var calendars: EKCalendar?
@@ -47,6 +47,7 @@ class EventsListedProviderViewController: UIViewController, UITableViewDataSourc
             refreshTableView()
         case EKAuthorizationStatus.restricted, EKAuthorizationStatus.denied:
             needPermissionView.fadeIn()
+            
         }
     }
     
@@ -64,15 +65,13 @@ class EventsListedProviderViewController: UIViewController, UITableViewDataSourc
                 }
             } else {
                 DispatchQueue.main.async {
+                    
                     self.needPermissionView.fadeIn()
                 }
             }
         })
     }
-
-//    func loadCalendars() {
-//        self.calendars = eventStore.calendars(for: EKEntityType.event)
-//    }
+    
     
     func refreshTableView() {
         providerCalendarView.isHidden = false
@@ -81,17 +80,13 @@ class EventsListedProviderViewController: UIViewController, UITableViewDataSourc
     
     @IBAction func goToSettingsButtonTapped(_ sender: UIButton) {
         let openSettingsURL = URL(string: UIApplication.openSettingsURLString)
-        UIApplication.shared.openURL(openSettingsURL!)
-        
-        
+       
+        UIApplication.shared.open(openSettingsURL!, options: [:]) { (success) in
+            
+        }
     }
     
-   
     
-//    func calendarDidAdd() {
-//        NewCalendarController.sharedContoller.loadCalendars()
-//        self.refreshTableView()
-//    }
     @IBAction func manageButtonTapped(_ sender: UIBarButtonItem) {
         guard let calendars = calendars else {return}
         EventKitController.sharedContoller.calendar = calendars
@@ -100,7 +95,6 @@ class EventsListedProviderViewController: UIViewController, UITableViewDataSourc
         self.refreshTableView()
         
     }
-    
     
     func loadEvents() {
         // Create a date formatter instance to use for converting a string to a date
@@ -115,17 +109,17 @@ class EventsListedProviderViewController: UIViewController, UITableViewDataSourc
             //let eventStore = eventStore
             
             if let calendars = EventKitController.sharedContoller.calendar {
-            // Use an event store instance to create and properly configure an NSPredicate
-            let eventsPredicate = eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: [calendars])
-            
-            // Use the configured NSPredicate to find and return events in the store that match
-            self.events = eventStore.events(matching: eventsPredicate).sorted(){
-                (e1: EKEvent, e2: EKEvent) -> Bool in
-                return e1.startDate.compare(e2.startDate) == ComparisonResult.orderedAscending
+                // Use an event store instance to create and properly configure an NSPredicate
+                let eventsPredicate = eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: [calendars])
+                
+                // Use the configured NSPredicate to find and return events in the store that match
+                self.events = eventStore.events(matching: eventsPredicate).sorted(){
+                    (e1: EKEvent, e2: EKEvent) -> Bool in
+                    return e1.startDate.compare(e2.startDate) == ComparisonResult.orderedAscending
+                }
             }
-        }
             refreshTableView()
-    }
+        }
     }
     
     func formatDate(_ date: Date?) -> String {
@@ -156,7 +150,7 @@ class EventsListedProviderViewController: UIViewController, UITableViewDataSourc
         return 0
     }
     
-   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProviderCalendarCell")!
         cell.textLabel?.text = events?[(indexPath as NSIndexPath).row].title
         cell.detailTextLabel?.text = formatDate(events?[(indexPath as NSIndexPath).row].startDate)

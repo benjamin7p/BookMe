@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9A02A47622175A2D007C7CBC /* EventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A02A47522175A2D007C7CBC /* EventController.swift */; };
 		9A0411E1221F1B6600F974ED /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0411E0221F1B6600F974ED /* Calendar.swift */; };
 		9A0411E3221F226B00F974ED /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0411E2221F226B00F974ED /* Event.swift */; };
 		9A0579E922146CA1002016C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0579E822146CA1002016C0 /* AppDelegate.swift */; };
@@ -23,7 +22,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9A02A47522175A2D007C7CBC /* EventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventController.swift; sourceTree = "<group>"; };
 		9A0411E0221F1B6600F974ED /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
 		9A0411E2221F226B00F974ED /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		9A0579E522146CA1002016C0 /* BookMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,7 +104,6 @@
 		9A0579FE22146D93002016C0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				9A02A47522175A2D007C7CBC /* EventController.swift */,
 				9A060ACC2215BA0500FB4F31 /* EventKitController.swift */,
 			);
 			path = Controller;
@@ -190,7 +187,6 @@
 				9A057A0222147190002016C0 /* AvailabilityListTableViewController.swift in Sources */,
 				9A0579E922146CA1002016C0 /* AppDelegate.swift in Sources */,
 				9A057A042214864F002016C0 /* EventsListedProviderViewController.swift in Sources */,
-				9A02A47622175A2D007C7CBC /* EventController.swift in Sources */,
 				9A060ACF2215D88D00FB4F31 /* AddEventViewController.swift in Sources */,
 				9A0411E1221F1B6600F974ED /* Calendar.swift in Sources */,
 			);

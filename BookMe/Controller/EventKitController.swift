@@ -28,10 +28,7 @@ class EventKitController: UIViewController {
         try? eventStore.removeCalendar(calendar, commit: true)
     }
     
-//    func creatCaledar2(title: String, type: EKCalendar.Type, allowsModify: Bool) -> EKCalendar {
-//        let newCalendar = EKCalendar(for: .event, eventStore: eventStore)
-//        
-//    }
+    
     
     
     func createCalendar() {
@@ -41,7 +38,7 @@ class EventKitController: UIViewController {
         
         // Use Event Store to create a new calendar instance
         // Configure its title
-         let newCalendar = EKCalendar(for: .event, eventStore: eventStore)
+        let newCalendar = EKCalendar(for: .event, eventStore: eventStore)
         
         // Probably want to prevent someone from saving a calendar
         // if they don't type in a name...
@@ -73,74 +70,9 @@ class EventKitController: UIViewController {
         }
         
         calendar = newCalendar
-    
-    
+        
+        
     }
-    
-    
-    
-//    func createEvent(eventType: EKEvent, name: String)  {
-//        if let calendar = calendar,
-//            let calendarForEvent = eventStore.calendar(withIdentifier: calendar.calendarIdentifier) {
-//
-//            var newEvent = EKEvent(eventStore: eventStore)
-//
-//
-//            newEvent.calendar = calendarForEvent
-//            newEvent.title = name
-//            //newEvent.startDate = startTime.date
-//           // newEvent.endDate = endTime.date
-//
-//            if let event = event?.first {
-//                newEvent = event
-//
-//                do {
-//                    try eventStore.save(newEvent, span: .thisEvent, commit: true)
-//                    //eventDidAdd()
-//
-//                    self.navigationController?.popViewController(animated: true)
-//
-//                } catch {
-//                    let alert = UIAlertController(title: "event could not save", message: (error as NSError).localizedDescription, preferredStyle: .alert)
-//                    let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-//                    alert.addAction(OKAction)
-//                    present(alert, animated: true) {
-//                        print("hi")
-//                    }
-//
-//                    print(newEvent)
-//                    print(event)
-//
-//                }
-//            }
-//        }
-//    }
-    
 }
-
-//class EventController {
-//
-//    let eventStore = NewCalendarController.sharedContoller.eventStore
-//    let calendar = NewCalendarController.sharedContoller.newCalendar?[2]
-//    let newEvent: [EKEvent]? = newEvent
-//
-//    static let sharedController = EventController()
-//
-//    func creatEvent() {
-//        if let calendar = NewCalendarController.sharedContoller.newCalendar?[2],
-//            let calendarForEvent = eventStore.calendar(withIdentifier: calendar.calendarIdentifier){
-//            let newEvent = EKEvent(eventStore: eventStore)
-//
-//            newEvent.calendar = calendarForEvent
-//            newEvent.title = AddEventViewController.sharedController.eventNameTextField.text ?? "Event Name"
-//            newEvent.startDate = AddEventViewController.sharedController.startTimeDatePicker.date
-//            newEvent.endDate = AddEventViewController.sharedController.endTimeDatePicker.date
-//
-//            do {
-//                try eventStore.save(newEvent, span: .thisEvent, commit: true)
-//                // eventDidAdd()
-//            }
-//    }
-//        }
-//
-//
+    
+    
