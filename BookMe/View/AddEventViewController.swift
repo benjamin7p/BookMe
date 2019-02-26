@@ -15,10 +15,9 @@ class AddEventViewController: UIViewController {
 
     static let sharedController = AddEventViewController()
     
-    var calendar: EKCalendar?
+    //var calendar: EKCalendar?
     var event: EKEvent?
-    
-    
+        
     
     
     @IBOutlet weak var startTimeDatePicker: UIDatePicker!
@@ -63,9 +62,7 @@ class AddEventViewController: UIViewController {
     }
 
     
-    func loadCalendars() {
-        self.calendar = EventKitController.sharedContoller.eventStore.calendars(for: EKEntityType.event).first
-    }
+
     
     
     func initialDatePickerValue() -> Date {

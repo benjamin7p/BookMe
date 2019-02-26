@@ -13,8 +13,10 @@ class EventsListedProviderViewController: UIViewController, UITableViewDataSourc
     
     let eventStore = EventKitController.sharedContoller.eventStore
     
-    var calendars: EKCalendar?
+    var calendars = EventKitController.sharedContoller.calendar
     
+    var delegate: EKEventViewDelegate?
+
     var events: [EKEvent]? 
     
     @IBOutlet weak var needPermissionView: UIView!
@@ -32,6 +34,7 @@ class EventsListedProviderViewController: UIViewController, UITableViewDataSourc
     override func viewWillAppear(_ animated: Bool) {
         checkCalendarAuthorizationStatus()
         eventDidAdd()
+        //calendarDidAdd()
         loadEvents()
         
     }
@@ -103,7 +106,7 @@ class EventsListedProviderViewController: UIViewController, UITableViewDataSourc
         
         // Create start and end date NSDate instances to build a predicate for which events to select
         let startDate = dateFormatter.date(from: "2019-01-20")
-        let endDate = dateFormatter.date(from: "2019-02-23")
+        let endDate = dateFormatter.date(from: "2020-02-23")
         
         if let startDate = startDate, let endDate = endDate {
             //let eventStore = eventStore
@@ -152,9 +155,21 @@ class EventsListedProviderViewController: UIViewController, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProviderCalendarCell")!
+        let event = events?[indexPath.row]
         cell.textLabel?.text = events?[(indexPath as NSIndexPath).row].title
         cell.detailTextLabel?.text = formatDate(events?[(indexPath as NSIndexPath).row].startDate)
         return cell
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "displayEventSegue" {
+            guard let detailVC = segue.destination as? EKEventViewController,
+                let selectedRow = providerTableView.indexPathForSelectedRow?.row else {return}
+            
+            let selectedEvent = events?[selectedRow]
+            detailVC.event = selectedEvent
+            detailVC.loadViewIfNeeded()
+        }
     }
 }
