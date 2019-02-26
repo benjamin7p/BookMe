@@ -26,9 +26,11 @@ class AddEventViewController: UIViewController {
     @IBOutlet weak var endTimeDatePicker: UIDatePicker!
     @IBOutlet weak var eventNameTextField: UITextField!
     
+    
     @IBAction func saveEventButtonTapped(_ sender: UIBarButtonItem) {
-        
+         
         createEvent()
+        self.navigationController?.popViewController(animated: true)
     }
     func createEvent()  {
 
@@ -44,7 +46,7 @@ class AddEventViewController: UIViewController {
                 
                 
 
-                self.navigationController?.popViewController(animated: true)
+                
             } catch {
                 let alert = UIAlertController(title: "event could not save", message: (error as NSError).localizedDescription, preferredStyle: .alert)
                 let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)

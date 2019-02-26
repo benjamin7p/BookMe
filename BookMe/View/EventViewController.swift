@@ -50,15 +50,15 @@ class EKEventViewController: UIViewController {
         
         return ""
     }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "editButtonSegue" {
-            guard let detailVC = segue.destination as? EditViewController else {return}
-               
-            let eventToEdit = event
-            detailVC.event = eventToEdit
-            
-            detailVC.loadViewIfNeeded()
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "editButtonSegue" {
+//            guard let detailVC = segue.destination as? EditViewController else {return}
+//               
+//            let eventToEdit = event
+//            detailVC.event = eventToEdit
+//            
+//            detailVC.loadViewIfNeeded()
+//        }
+//    }
 
 }

@@ -13,7 +13,8 @@ class EventsListedProviderViewController: UIViewController, UITableViewDataSourc
     
     let eventStore = EventKitController.sharedContoller.eventStore
     
-    var calendars = EventKitController.sharedContoller.calendar
+    //var calendars = EventKitController.sharedContoller.calendar
+    var calendars: EKCalendar?
     
     var delegate: EKEventViewDelegate?
 
@@ -33,6 +34,7 @@ class EventsListedProviderViewController: UIViewController, UITableViewDataSourc
     
     override func viewWillAppear(_ animated: Bool) {
         checkCalendarAuthorizationStatus()
+        assignCalendar()
         eventDidAdd()
         //calendarDidAdd()
         loadEvents()
@@ -78,6 +80,7 @@ class EventsListedProviderViewController: UIViewController, UITableViewDataSourc
     
     func refreshTableView() {
         providerCalendarView.isHidden = false
+        providerTableView.isHidden = false
         providerTableView.reloadData()
     }
     
@@ -88,6 +91,13 @@ class EventsListedProviderViewController: UIViewController, UITableViewDataSourc
             
         }
     }
+    
+    func assignCalendar() {
+        guard let calendars = calendars else {return}
+        EventKitController.sharedContoller.calendar = calendars
+        
+    }
+    
     
     
     @IBAction func manageButtonTapped(_ sender: UIBarButtonItem) {
@@ -170,6 +180,20 @@ class EventsListedProviderViewController: UIViewController, UITableViewDataSourc
             let selectedEvent = events?[selectedRow]
             detailVC.event = selectedEvent
             detailVC.loadViewIfNeeded()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            events?.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            // delete from [events]
+            //save event
+            //AddEventViewController.sharedController.createEvent()
         }
     }
 }
