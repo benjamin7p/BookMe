@@ -15,14 +15,13 @@ class AddEventViewController: UIViewController {
 
     static let sharedController = AddEventViewController()
     
-    //var calendar: EKCalendar?
-    var event: EKEvent?
-        
+    var eventStore = EventKitController.sharedController.eventStore
     
+    var calendar = EventKitController.sharedController.calendar
+    
+    var event: EKEvent?
     
     @IBOutlet weak var startTimeDatePicker: UIDatePicker!
-    
-    
     @IBOutlet weak var endTimeDatePicker: UIDatePicker!
     @IBOutlet weak var eventNameTextField: UITextField!
     
@@ -34,19 +33,15 @@ class AddEventViewController: UIViewController {
     }
     func createEvent()  {
 
-            let newEvent = EKEvent(eventStore: EventKitController.sharedContoller.eventStore)
+            let newEvent = EKEvent(eventStore: eventStore)
 
-            newEvent.calendar = EventKitController.sharedContoller.calendar
+            newEvent.calendar = EventKitController.sharedController.calendar
             newEvent.title = self.eventNameTextField.text ?? "Event Name"
             newEvent.startDate = self.startTimeDatePicker.date
             newEvent.endDate = self.endTimeDatePicker.date
 
             do {
-                try EventKitController.sharedContoller.eventStore.save(newEvent, span: .thisEvent, commit: true)
-                
-                
-
-                
+                try eventStore.save(newEvent, span: .thisEvent, commit: true)  
             } catch {
                 let alert = UIAlertController(title: "event could not save", message: (error as NSError).localizedDescription, preferredStyle: .alert)
                 let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)

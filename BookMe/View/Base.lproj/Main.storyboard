@@ -82,41 +82,47 @@
                                 <rect key="frame" x="0.0" y="32" width="375" height="667"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QKg-5W-QCQ">
-                                        <rect key="frame" x="16" y="318.5" width="343" height="30"/>
+                                        <rect key="frame" x="16" y="296" width="343" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="N3n-xh-ijN"/>
+                                        </constraints>
                                         <state key="normal" title="Schedule New Appointment"/>
                                         <connections>
                                             <segue destination="SiY-XS-AVq" kind="show" id="wFk-5G-MWL"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ftw-3K-DkV">
-                                        <rect key="frame" x="16" y="318.5" width="343" height="30"/>
+                                        <rect key="frame" x="16" y="334" width="343" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="BEI-AV-uhP"/>
+                                        </constraints>
                                         <state key="normal" title="View Today's Appoinments"/>
                                         <connections>
-                                            <segue destination="4vh-8G-lvF" kind="show" id="dhR-Ij-CwT"/>
+                                            <segue destination="2cm-4e-vsZ" kind="show" id="kwF-II-c9e"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KlL-2Z-cuJ">
-                                        <rect key="frame" x="16" y="318.5" width="343" height="30"/>
+                                        <rect key="frame" x="16" y="372" width="343" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="lRy-Gl-Gny"/>
+                                        </constraints>
                                         <state key="normal" title="View All Appointments"/>
-                                        <connections>
-                                            <segue destination="4vh-8G-lvF" kind="show" id="oF3-fd-q3g"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="QKg-5W-QCQ" firstAttribute="trailing" secondItem="KlL-2Z-cuJ" secondAttribute="trailing" id="3d3-Tf-Dea"/>
-                                    <constraint firstItem="Ftw-3K-DkV" firstAttribute="baseline" secondItem="KlL-2Z-cuJ" secondAttribute="baseline" id="9Lw-8x-dLP"/>
-                                    <constraint firstItem="KlL-2Z-cuJ" firstAttribute="centerX" secondItem="hgc-HX-bzd" secondAttribute="centerX" id="BPQ-hO-Cnd"/>
-                                    <constraint firstItem="Ftw-3K-DkV" firstAttribute="trailing" secondItem="QKg-5W-QCQ" secondAttribute="trailing" id="LnS-dj-uvY"/>
-                                    <constraint firstItem="Ftw-3K-DkV" firstAttribute="centerY" secondItem="hgc-HX-bzd" secondAttribute="centerY" id="X8Z-ml-VDO"/>
-                                    <constraint firstItem="QKg-5W-QCQ" firstAttribute="baseline" secondItem="KlL-2Z-cuJ" secondAttribute="baseline" id="Xd6-eF-bgy"/>
-                                    <constraint firstItem="KlL-2Z-cuJ" firstAttribute="leading" secondItem="hgc-HX-bzd" secondAttribute="leading" constant="16" id="csa-fD-y7I"/>
-                                    <constraint firstItem="QKg-5W-QCQ" firstAttribute="leading" secondItem="Ftw-3K-DkV" secondAttribute="leading" id="g7A-d1-bTt"/>
-                                    <constraint firstItem="QKg-5W-QCQ" firstAttribute="leading" secondItem="KlL-2Z-cuJ" secondAttribute="leading" id="tY9-8p-hBP"/>
+                                    <constraint firstItem="QKg-5W-QCQ" firstAttribute="top" secondItem="hgc-HX-bzd" secondAttribute="top" constant="296" id="2On-n3-PKD"/>
+                                    <constraint firstItem="QKg-5W-QCQ" firstAttribute="leading" secondItem="hgc-HX-bzd" secondAttribute="leading" constant="16" id="2ZR-Hn-ra3"/>
+                                    <constraint firstItem="KlL-2Z-cuJ" firstAttribute="leading" secondItem="hgc-HX-bzd" secondAttribute="leading" constant="16" id="IMM-ud-mzh"/>
+                                    <constraint firstItem="Ftw-3K-DkV" firstAttribute="top" secondItem="QKg-5W-QCQ" secondAttribute="bottom" constant="8" id="SEv-uR-zJ5"/>
+                                    <constraint firstItem="Ftw-3K-DkV" firstAttribute="leading" secondItem="hgc-HX-bzd" secondAttribute="leading" constant="16" id="Xkm-MA-YjM"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ftw-3K-DkV" secondAttribute="trailing" constant="16" id="ncQ-aZ-qAi"/>
+                                    <constraint firstItem="KlL-2Z-cuJ" firstAttribute="top" secondItem="Ftw-3K-DkV" secondAttribute="bottom" constant="8" id="oUZ-iY-Dmq"/>
+                                    <constraint firstAttribute="trailing" secondItem="KlL-2Z-cuJ" secondAttribute="trailing" constant="16" id="v1S-hb-ZzO"/>
+                                    <constraint firstAttribute="trailing" secondItem="QKg-5W-QCQ" secondAttribute="trailing" constant="16" id="x7k-n9-ocV"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mn6-mn-Q2Z" userLabel="needPermissionView">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mn6-mn-Q2Z" userLabel="needPermissionView">
                                 <rect key="frame" x="0.0" y="32" width="375" height="667"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This app needs permission to access your calendar " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rCi-eQ-T0x">
@@ -160,10 +166,41 @@
             </objects>
             <point key="canvasLocation" x="2088.8000000000002" y="133.5832083958021"/>
         </scene>
-        <!--View Controller-->
+        <!--Events Table View Controller-->
+        <scene sceneID="7Ij-Gj-4Co">
+            <objects>
+                <tableViewController id="2cm-4e-vsZ" customClass="EventsTableViewController" customModule="BookMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="fkV-by-bPR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EventCell" id="dv0-xn-UdL">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dv0-xn-UdL" id="3Xp-jH-fFU">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="2cm-4e-vsZ" id="Kbe-9F-0FP"/>
+                            <outlet property="delegate" destination="2cm-4e-vsZ" id="JnN-TU-Dgi"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="KG4-SA-IYe">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="1ch-49-IgW"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YSm-NF-j2p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3145" y="484"/>
+        </scene>
+        <!--Add Event View Controller-->
         <scene sceneID="x8p-og-Mf7">
             <objects>
-                <viewController id="SiY-XS-AVq" sceneMemberID="viewController">
+                <viewController id="SiY-XS-AVq" customClass="AddEventViewController" customModule="BookMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uAv-v0-hRM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -211,8 +248,17 @@
                         <viewLayoutGuide key="safeArea" id="r2Q-qC-3tK"/>
                     </view>
                     <navigationItem key="navigationItem" id="tD7-m6-ZlC">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="3ec-bj-F6O"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="3ec-bj-F6O">
+                            <connections>
+                                <action selector="saveEventButtonTapped:" destination="SiY-XS-AVq" id="s3C-e6-jVy"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="endTimeDatePicker" destination="mbm-oV-brp" id="W0S-s9-kR6"/>
+                        <outlet property="eventNameTextField" destination="ufQ-19-mvp" id="U3h-8I-kvE"/>
+                        <outlet property="startTimeDatePicker" destination="p3b-6G-HOy" id="pAC-Jk-zgU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dC3-vM-Gbs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -276,11 +322,7 @@
                         <viewLayoutGuide key="safeArea" id="gJI-Mw-5gJ"/>
                     </view>
                     <navigationItem key="navigationItem" id="pff-Xv-V9b">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="mAl-uK-DWK">
-                            <connections>
-                                <segue destination="SiY-XS-AVq" kind="show" id="Ixo-SG-U1x"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="mAl-uK-DWK"/>
                     </navigationItem>
                     <connections>
                         <outlet property="needPermissionView" destination="h9K-5z-0er" id="gtU-TG-Wic"/>
@@ -290,7 +332,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yDs-o9-4pF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3145" y="361"/>
+            <point key="canvasLocation" x="2284" y="-797"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3f0-1c-zfL">
@@ -311,8 +353,4 @@
             <point key="canvasLocation" x="1149.5999999999999" y="133.5832083958021"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="dhR-Ij-CwT"/>
-        <segue reference="wFk-5G-MWL"/>
-    </inferredMetricsTieBreakers>
 </document>

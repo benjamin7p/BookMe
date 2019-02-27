@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9A02363E22243EF600249BC6 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A02363D22243EF600249BC6 /* EventViewController.swift */; };
+		9A03A3892227078400E866B4 /* EventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A03A3882227078300E866B4 /* EventsTableViewController.swift */; };
 		9A04E8B72225BBB400C518F4 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A04E8B62225BBB400C518F4 /* WelcomeViewController.swift */; };
 		9A0579E922146CA1002016C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0579E822146CA1002016C0 /* AppDelegate.swift */; };
 		9A0579EE22146CA1002016C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A0579EC22146CA1002016C0 /* Main.storyboard */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		9A02363D22243EF600249BC6 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
+		9A03A3882227078300E866B4 /* EventsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTableViewController.swift; sourceTree = "<group>"; };
 		9A04E8B62225BBB400C518F4 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		9A0579E522146CA1002016C0 /* BookMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A0579E822146CA1002016C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				9A057A032214864F002016C0 /* EventsListedProviderViewController.swift */,
+				9A03A3882227078300E866B4 /* EventsTableViewController.swift */,
 				9A057A0522148D84002016C0 /* UIViewExtentions.swift */,
 				9A0579EC22146CA1002016C0 /* Main.storyboard */,
 				9A04E8B62225BBB400C518F4 /* WelcomeViewController.swift */,
@@ -180,6 +183,7 @@
 				9A0579E922146CA1002016C0 /* AppDelegate.swift in Sources */,
 				9A057A042214864F002016C0 /* EventsListedProviderViewController.swift in Sources */,
 				9A060ACF2215D88D00FB4F31 /* AddEventViewController.swift in Sources */,
+				9A03A3892227078400E866B4 /* EventsTableViewController.swift in Sources */,
 				9A04E8B72225BBB400C518F4 /* WelcomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

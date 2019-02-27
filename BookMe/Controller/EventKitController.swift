@@ -10,9 +10,9 @@ import Foundation
 import EventKit
 
 
-class EventKitController: UIViewController {
+class EventKitController {
     
-    static let sharedContoller = EventKitController()
+    static let sharedController = EventKitController()
     
     let eventStore = EKEventStore()
     
@@ -21,7 +21,11 @@ class EventKitController: UIViewController {
     var event: [EKEvent]?
     
     func loadCalendars() {
-        self.calendar = eventStore.calendars(for: EKEntityType.event)[2]
+        for calendar in eventStore.calendars(for: .event) {
+            if calendar.title == "Work Calendar" {
+                self.calendar = calendar
+            }
+        }
     }
     
     func deleteCalendar(calendar: EKCalendar) {
@@ -74,5 +78,5 @@ class EventKitController: UIViewController {
         
     }
 }
-    
-    
+//
+//    

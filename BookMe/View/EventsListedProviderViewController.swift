@@ -11,7 +11,7 @@ import UIKit
 
 class EventsListedProviderViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
     
-    let eventStore = EventKitController.sharedContoller.eventStore
+    let eventStore = EventKitController.sharedController.eventStore
     
     //var calendars = EventKitController.sharedContoller.calendar
     var calendars: EKCalendar?
@@ -28,61 +28,61 @@ class EventsListedProviderViewController: UIViewController, UITableViewDataSourc
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        calendars = EventKitController.sharedContoller.calendar
+        calendars = EventKitController.sharedController.calendar
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        checkCalendarAuthorizationStatus()
-        assignCalendar()
-        eventDidAdd()
-        //calendarDidAdd()
-        loadEvents()
-        
+//        checkCalendarAuthorizationStatus()
+//        assignCalendar()
+//        eventDidAdd()
+//        //calendarDidAdd()
+//        loadEvents()
+//        
     }
     
-    func checkCalendarAuthorizationStatus() {
-        let status = EKEventStore.authorizationStatus(for: EKEntityType.event)
-        
-        switch (status) {
-        case EKAuthorizationStatus.notDetermined:
-            requestAccessToCalendar()
-        case EKAuthorizationStatus.authorized:
-            EventKitController.sharedContoller.loadCalendars()
-            refreshTableView()
-        case EKAuthorizationStatus.restricted, EKAuthorizationStatus.denied:
-            needPermissionView.fadeIn()
-            
-        }
-    }
-    
-    func requestAccessToCalendar() {
-        
-        eventStore.requestAccess(to: EKEntityType.event, completion: {
-            (accessGranted: Bool, error: Error?) in
-            
-            if accessGranted == true {
-                DispatchQueue.main.async {
-                    EventKitController.sharedContoller.createCalendar()
-                    EventKitController.sharedContoller.loadCalendars()
-                    
-                    self.refreshTableView()
-                }
-            } else {
-                DispatchQueue.main.async {
-                    
-                    self.needPermissionView.fadeIn()
-                }
-            }
-        })
-    }
-    
-    
-    func refreshTableView() {
-        providerCalendarView.isHidden = false
-        providerTableView.isHidden = false
-        providerTableView.reloadData()
-    }
+//    func checkCalendarAuthorizationStatus() {
+//        let status = EKEventStore.authorizationStatus(for: EKEntityType.event)
+//
+//        switch (status) {
+//        case EKAuthorizationStatus.notDetermined:
+//            requestAccessToCalendar()
+//        case EKAuthorizationStatus.authorized:
+//            EventKitController.sharedContoller.loadCalendars()
+//            refreshTableView()
+//        case EKAuthorizationStatus.restricted, EKAuthorizationStatus.denied:
+//            needPermissionView.fadeIn()
+//
+//        }
+//    }
+//
+//    func requestAccessToCalendar() {
+//
+//        eventStore.requestAccess(to: EKEntityType.event, completion: {
+//            (accessGranted: Bool, error: Error?) in
+//
+//            if accessGranted == true {
+//                DispatchQueue.main.async {
+//                    EventKitController.sharedContoller.createCalendar()
+//                    EventKitController.sharedContoller.loadCalendars()
+//
+//                    self.refreshTableView()
+//                }
+//            } else {
+//                DispatchQueue.main.async {
+//
+//                    self.needPermissionView.fadeIn()
+//                }
+//            }
+//        })
+//    }
+//
+//
+//    func refreshTableView() {
+//        providerCalendarView.isHidden = false
+//        providerTableView.isHidden = false
+//        providerTableView.reloadData()
+//    }
     
     @IBAction func goToSettingsButtonTapped(_ sender: UIButton) {
         let openSettingsURL = URL(string: UIApplication.openSettingsURLString)
@@ -92,22 +92,22 @@ class EventsListedProviderViewController: UIViewController, UITableViewDataSourc
         }
     }
     
-    func assignCalendar() {
-        guard let calendars = calendars else {return}
-        EventKitController.sharedContoller.calendar = calendars
-        
-    }
+//    func assignCalendar() {
+//        guard let calendars = calendars else {return}
+//        EventKitController.sharedContoller.calendar = calendars
+//
+//    }
+//
     
     
-    
-    @IBAction func manageButtonTapped(_ sender: UIBarButtonItem) {
-        guard let calendars = calendars else {return}
-        EventKitController.sharedContoller.calendar = calendars
-        
-        EventKitController.sharedContoller.loadCalendars()
-        self.refreshTableView()
-        
-    }
+//    @IBAction func manageButtonTapped(_ sender: UIBarButtonItem) {
+//        guard let calendars = calendars else {return}
+//        EventKitController.sharedContoller.calendar = calendars
+//
+//        EventKitController.sharedContoller.loadCalendars()
+//        self.refreshTableView()
+//
+//    }
     
     func loadEvents() {
         // Create a date formatter instance to use for converting a string to a date
@@ -121,7 +121,7 @@ class EventsListedProviderViewController: UIViewController, UITableViewDataSourc
         if let startDate = startDate, let endDate = endDate {
             //let eventStore = eventStore
             
-            if let calendars = EventKitController.sharedContoller.calendar {
+            if let calendars = EventKitController.sharedController.calendar {
                 // Use an event store instance to create and properly configure an NSPredicate
                 let eventsPredicate = eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: [calendars])
                 
@@ -131,7 +131,7 @@ class EventsListedProviderViewController: UIViewController, UITableViewDataSourc
                     return e1.startDate.compare(e2.startDate) == ComparisonResult.orderedAscending
                 }
             }
-            refreshTableView()
+            //refreshTableView()
         }
     }
     
@@ -150,10 +150,10 @@ class EventsListedProviderViewController: UIViewController, UITableViewDataSourc
         providerTableView.reloadData()
     }
     
-    func calendarDidAdd() {
-        EventKitController.sharedContoller.loadCalendars()
-        self.refreshTableView()
-    }
+//    func calendarDidAdd() {
+//        EventKitController.sharedContoller.loadCalendars()
+//        self.refreshTableView()
+//    }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
