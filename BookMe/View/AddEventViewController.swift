@@ -27,10 +27,32 @@ class AddEventViewController: UIViewController {
     
     
     @IBAction func saveEventButtonTapped(_ sender: UIBarButtonItem) {
-         
+         // if save tapped do not pop. if segue id is saveButtonTapped then pop
         createEvent()
-        self.navigationController?.popViewController(animated: true)
+        
+        
+            performSegue(withIdentifier: "saveButtonTappedSegue", sender: nil)
+
+        
+        // use for add button tapped segue to table view
+        //self.navigationController?.popViewController(animated: true)
+        
     }
+    
+    
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "saveButtonTappedSegue" {
+//            self.navigationController?.popViewController(animated: true)
+//
+//        } else {
+//            performSegue(withIdentifier: "saveButtonTappedSegue", sender: nil)
+//            self.navigationController?.popViewController(animated: true)
+//        }
+//    }
+    
+    
+
     func createEvent()  {
 
             let newEvent = EKEvent(eventStore: eventStore)
@@ -41,7 +63,8 @@ class AddEventViewController: UIViewController {
             newEvent.endDate = self.endTimeDatePicker.date
 
             do {
-                try eventStore.save(newEvent, span: .thisEvent, commit: true)  
+                try eventStore.save(newEvent, span: .thisEvent, commit: true)
+                event = newEvent
             } catch {
                 let alert = UIAlertController(title: "event could not save", message: (error as NSError).localizedDescription, preferredStyle: .alert)
                 let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -50,12 +73,8 @@ class AddEventViewController: UIViewController {
                     print("hi")
                 }
 
-                print(newEvent)
-                event = newEvent
-                
-
-
         }
+        
     }
 
     
@@ -78,7 +97,7 @@ class AddEventViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        calendar = EventKitController.sharedController.calendar
         self.startTimeDatePicker.setDate(initialDatePickerValue(), animated: true)
         self.endTimeDatePicker.setDate(initialDatePickerValue(), animated: true)
     }

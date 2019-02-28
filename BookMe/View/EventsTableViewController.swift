@@ -13,16 +13,19 @@ class EventsTableViewController: UITableViewController {
     
     var events: [EKEvent]?
     
-    var calendars: EKCalendar?
+    
     
     let eventStore = EventKitController.sharedController.eventStore
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        calendars = EventKitController.sharedController.calendar
+        //calendars = EventKitController.sharedController.calendar
+        self.tableView.backgroundColor = UIColor.black
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         loadEvents()
     }
 
@@ -69,9 +72,21 @@ class EventsTableViewController: UITableViewController {
 //        try? eventStore.removeCalendar(calendar, commit: true)
 //    }
     
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.backgroundColor = UIColor.clear
+        cell.textLabel?.textColor = UIColor.red
+    }
+    
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        if let events = self.events {
+//            return events.count
+//        }
+//        return 0
+//    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let events = self.events {
+            
             return events.count
         }
         return 0
@@ -100,6 +115,12 @@ class EventsTableViewController: UITableViewController {
             
                 tableView.reloadData()
             }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addButtonTappedSegue" {
+            self.navigationController?.popViewController(animated: true)
         }
     }
     /*

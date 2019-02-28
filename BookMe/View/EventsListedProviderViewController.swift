@@ -155,7 +155,7 @@ class EventsListedProviderViewController: UIViewController, UITableViewDataSourc
 //        self.refreshTableView()
 //    }
     
-    
+     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let events = self.events {
             return events.count
