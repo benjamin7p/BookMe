@@ -27,59 +27,48 @@ class AddEventViewController: UIViewController {
     
     
     @IBAction func saveEventButtonTapped(_ sender: UIBarButtonItem) {
-         // if save tapped do not pop. if segue id is saveButtonTapped then pop
+        
         createEvent()
         
-        
-            performSegue(withIdentifier: "saveButtonTappedSegue", sender: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let eventsViewController = storyboard.instantiateViewController(withIdentifier: "EventsTableViewController")
+        let welcomeViewController = storyboard.instantiateViewController(withIdentifier: "WelcomeViewController")
+        let viewControllerArray = [welcomeViewController, eventsViewController]
+        self.navigationController?.setViewControllers(viewControllerArray, animated: true)
 
-        
-        // use for add button tapped segue to table view
-        //self.navigationController?.popViewController(animated: true)
-        
     }
     
     
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "saveButtonTappedSegue" {
-//            self.navigationController?.popViewController(animated: true)
-//
-//        } else {
-//            performSegue(withIdentifier: "saveButtonTappedSegue", sender: nil)
-//            self.navigationController?.popViewController(animated: true)
-//        }
-//    }
-    
-    
+    func editEvent() {
+        if let event = event {
+            EventsTableViewController.sharedController.deleteThisEvent(eventToDelete: event)
+        }
+    }
 
+    
     func createEvent()  {
 
-            let newEvent = EKEvent(eventStore: eventStore)
+        editEvent()
+        let newEvent = EKEvent(eventStore: eventStore)
 
-            newEvent.calendar = EventKitController.sharedController.calendar
-            newEvent.title = self.eventNameTextField.text ?? "Event Name"
-            newEvent.startDate = self.startTimeDatePicker.date
-            newEvent.endDate = self.endTimeDatePicker.date
+        newEvent.calendar = EventKitController.sharedController.calendar
+        newEvent.title = self.eventNameTextField.text ?? "Event Name"
+        newEvent.startDate = self.startTimeDatePicker.date
+        newEvent.endDate = self.endTimeDatePicker.date
 
-            do {
-                try eventStore.save(newEvent, span: .thisEvent, commit: true)
-                event = newEvent
-            } catch {
-                let alert = UIAlertController(title: "event could not save", message: (error as NSError).localizedDescription, preferredStyle: .alert)
-                let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                alert.addAction(OKAction)
-                present(alert, animated: true) {
-                    print("hi")
-                }
-
+        do {
+            try eventStore.save(newEvent, span: .thisEvent, commit: true)
+            event = newEvent
+        } catch {
+            let alert = UIAlertController(title: "event could not save", message: (error as NSError).localizedDescription, preferredStyle: .alert)
+            let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(OKAction)
+            present(alert, animated: true) {
+                print("hi")
+            }
         }
-        
     }
 
-    
-
-    
     
     func initialDatePickerValue() -> Date {
         let calendarUnitFlags: NSCalendar.Unit = [.year, .month, .day, .hour, .minute, .second]
@@ -94,13 +83,16 @@ class AddEventViewController: UIViewController {
     }
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         calendar = EventKitController.sharedController.calendar
         self.startTimeDatePicker.setDate(initialDatePickerValue(), animated: true)
         self.endTimeDatePicker.setDate(initialDatePickerValue(), animated: true)
+        
+        if let event = event {
+            eventNameTextField.text = event.title
+            startTimeDatePicker.date = event.startDate
+            endTimeDatePicker.date = event.endDate
+        }
     }
-
-    
 }

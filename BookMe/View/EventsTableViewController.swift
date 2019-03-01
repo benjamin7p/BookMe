@@ -13,20 +13,21 @@ class EventsTableViewController: UITableViewController {
     
     var events: [EKEvent]?
     
-    
+    static let sharedController = EventsTableViewController()
     
     let eventStore = EventKitController.sharedController.eventStore
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //calendars = EventKitController.sharedController.calendar
-        self.tableView.backgroundColor = UIColor.black
+        self.tableView.backgroundColor = UIColor.lightGray
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         loadEvents()
+        //loadTodaysEvents()
     }
 
     func loadEvents() {
@@ -55,6 +56,11 @@ class EventsTableViewController: UITableViewController {
         }
     }
     
+    func loadTodaysEvents() {
+        
+        
+    }
+    
     func formatDate(_ date: Date?) -> String {
         if let date = date {
             let dateFormatter = DateFormatter()
@@ -74,7 +80,7 @@ class EventsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.backgroundColor = UIColor.clear
-        cell.textLabel?.textColor = UIColor.red
+        cell.textLabel?.textColor = UIColor.black
     }
     
 //    override func numberOfSections(in tableView: UITableView) -> Int {
@@ -119,10 +125,21 @@ class EventsTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "addButtonTappedSegue" {
-            self.navigationController?.popViewController(animated: true)
+        if segue.identifier == "editCellSegue" {
+            guard let addEventViewController = segue.destination as? AddEventViewController,
+                let selectedRow = self.tableView.indexPathForSelectedRow?.row else {return}
+            
+            let selectedEvent = events?[selectedRow]
+            addEventViewController.event = selectedEvent
+            addEventViewController.loadViewIfNeeded()
         }
     }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "addButtonTappedSegue" {
+//        self.navigationController?.popViewController(animated: true)
+//        }
+//    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

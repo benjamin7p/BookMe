@@ -73,7 +73,7 @@
         <!--WelcomeViewController-->
         <scene sceneID="J0v-hu-JFd">
             <objects>
-                <viewController title="WelcomeViewController" id="Ro4-SH-jmd" customClass="WelcomeViewController" customModule="BookMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WelcomeViewController" title="WelcomeViewController" id="Ro4-SH-jmd" customClass="WelcomeViewController" customModule="BookMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gx7-OX-ojU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -88,7 +88,7 @@
                                         </constraints>
                                         <state key="normal" title="Schedule New Appointment"/>
                                         <connections>
-                                            <segue destination="SiY-XS-AVq" kind="show" id="muv-PC-5aR"/>
+                                            <segue destination="SiY-XS-AVq" kind="show" identifier="addEventSegue" id="muv-PC-5aR"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ftw-3K-DkV">
@@ -98,7 +98,7 @@
                                         </constraints>
                                         <state key="normal" title="View Today's Appoinments"/>
                                         <connections>
-                                            <segue destination="2cm-4e-vsZ" kind="show" id="kwF-II-c9e"/>
+                                            <segue destination="2cm-4e-vsZ" kind="show" identifier="todaysEventsSegue" id="kwF-II-c9e"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KlL-2Z-cuJ">
@@ -107,6 +107,9 @@
                                             <constraint firstAttribute="height" constant="30" id="lRy-Gl-Gny"/>
                                         </constraints>
                                         <state key="normal" title="View All Appointments"/>
+                                        <connections>
+                                            <segue destination="2cm-4e-vsZ" kind="show" identifier="allEventsSegue" id="hKF-00-QuH"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -169,22 +172,40 @@
         <!--Events Table View Controller-->
         <scene sceneID="7Ij-Gj-4Co">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YSm-NF-j2p" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tableViewController id="2cm-4e-vsZ" customClass="EventsTableViewController" customModule="BookMe" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="fkV-by-bPR">
+                <tableViewController storyboardIdentifier="EventsTableViewController" id="2cm-4e-vsZ" customClass="EventsTableViewController" customModule="BookMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="fkV-by-bPR" userLabel="EventsTableView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="sectionIndexColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EventCell" id="VYg-e7-ro2">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EventCell" textLabel="chQ-20-zq1" detailTextLabel="UuH-05-yQ1" style="IBUITableViewCellStyleValue1" id="VYg-e7-ro2">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VYg-e7-ro2" id="dtz-1a-wN7">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="chQ-20-zq1">
+                                            <rect key="frame" x="16" y="12" width="33.5" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UuH-05-yQ1">
+                                            <rect key="frame" x="315" y="12" width="44" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="SiY-XS-AVq" kind="show" identifier="editCellSegue" id="AnX-RF-MiB"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -195,11 +216,12 @@
                     <navigationItem key="navigationItem" id="KG4-SA-IYe">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="5ab-Sb-hNn">
                             <connections>
-                                <segue destination="SiY-XS-AVq" kind="show" id="rd4-5f-bcn"/>
+                                <segue destination="SiY-XS-AVq" kind="show" identifier="addButtonSegue" id="rd4-5f-bcn"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YSm-NF-j2p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3145" y="484"/>
         </scene>
@@ -256,7 +278,7 @@
                     <navigationItem key="navigationItem" id="tD7-m6-ZlC">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="3ec-bj-F6O">
                             <connections>
-                                <action selector="saveEventButtonTapped:" destination="SiY-XS-AVq" id="s3C-e6-jVy"/>
+                                <action selector="saveEventButtonTapped:" destination="SiY-XS-AVq" id="VPi-YY-1ko"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -264,7 +286,7 @@
                         <outlet property="endTimeDatePicker" destination="mbm-oV-brp" id="W0S-s9-kR6"/>
                         <outlet property="eventNameTextField" destination="ufQ-19-mvp" id="U3h-8I-kvE"/>
                         <outlet property="startTimeDatePicker" destination="p3b-6G-HOy" id="pAC-Jk-zgU"/>
-                        <segue destination="2cm-4e-vsZ" kind="show" identifier="saveButtonTappedSegue" id="xvm-16-A6e"/>
+                        <segue destination="2cm-4e-vsZ" kind="show" identifier="toTableViewSegue" id="MeO-sZ-fdm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dC3-vM-Gbs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -361,7 +383,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="rd4-5f-bcn"/>
-        <segue reference="xvm-16-A6e"/>
+        <segue reference="AnX-RF-MiB"/>
+        <segue reference="MeO-sZ-fdm"/>
     </inferredMetricsTieBreakers>
 </document>
