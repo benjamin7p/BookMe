@@ -98,7 +98,8 @@
                                         </constraints>
                                         <state key="normal" title="View Today's Appoinments"/>
                                         <connections>
-                                            <segue destination="2cm-4e-vsZ" kind="show" identifier="todaysEventsSegue" id="kwF-II-c9e"/>
+                                            <action selector="viewTodaysEventsButtonTapped:" destination="Ro4-SH-jmd" eventType="touchUpInside" id="Kcx-LV-02D"/>
+                                            <segue destination="2cm-4e-vsZ" kind="show" identifier="viewTodaysEventsSegue" id="A1r-Wr-Rmg"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KlL-2Z-cuJ">
@@ -108,6 +109,7 @@
                                         </constraints>
                                         <state key="normal" title="View All Appointments"/>
                                         <connections>
+                                            <action selector="viewAllEventsButtonTapped:" destination="Ro4-SH-jmd" eventType="touchUpInside" id="NEz-JO-oN0"/>
                                             <segue destination="2cm-4e-vsZ" kind="show" identifier="allEventsSegue" id="hKF-00-QuH"/>
                                         </connections>
                                     </button>
@@ -234,7 +236,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="p3b-6G-HOy">
-                                <rect key="frame" x="16" y="66" width="343" height="162"/>
+                                <rect key="frame" x="16" y="110" width="343" height="162"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="162" id="1IK-OJ-bev"/>
                                 </constraints>
@@ -243,7 +245,7 @@
                                 </date>
                             </datePicker>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ufQ-19-mvp">
-                                <rect key="frame" x="16" y="28" width="343" height="30"/>
+                                <rect key="frame" x="16" y="72" width="343" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="3Cs-VZ-RjO"/>
                                 </constraints>
@@ -252,7 +254,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="mbm-oV-brp">
-                                <rect key="frame" x="16" y="236" width="343" height="162"/>
+                                <rect key="frame" x="16" y="280" width="343" height="162"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="162" id="8zs-Mh-VK9"/>
                                 </constraints>
@@ -383,7 +385,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="AnX-RF-MiB"/>
-        <segue reference="MeO-sZ-fdm"/>
+        <segue reference="muv-PC-5aR"/>
+        <segue reference="A1r-Wr-Rmg"/>
     </inferredMetricsTieBreakers>
 </document>

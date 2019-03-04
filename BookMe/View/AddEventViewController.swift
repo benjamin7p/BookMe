@@ -68,26 +68,13 @@ class AddEventViewController: UIViewController {
             }
         }
     }
-
-    
-    func initialDatePickerValue() -> Date {
-        let calendarUnitFlags: NSCalendar.Unit = [.year, .month, .day, .hour, .minute, .second]
-        
-        var dateComponents = (Calendar.current as NSCalendar).components(calendarUnitFlags, from: Date())
-        
-        dateComponents.hour = 0
-        dateComponents.minute = 0
-        dateComponents.second = 0
-        
-        return Calendar.current.date(from: dateComponents)!
-    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         calendar = EventKitController.sharedController.calendar
-        self.startTimeDatePicker.setDate(initialDatePickerValue(), animated: true)
-        self.endTimeDatePicker.setDate(initialDatePickerValue(), animated: true)
+        self.startTimeDatePicker.setDate(EventKitController.sharedController.initialDatePickerValue(), animated: true)
+        self.endTimeDatePicker.setDate(EventKitController.sharedController.initialDatePickerValue(), animated: true)
         
         if let event = event {
             eventNameTextField.text = event.title

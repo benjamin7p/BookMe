@@ -32,6 +32,17 @@ class EventKitController {
         try? eventStore.removeCalendar(calendar, commit: true)
     }
     
+    func initialDatePickerValue() -> Date {
+        let calendarUnitFlags: NSCalendar.Unit = [.year, .month, .day, .hour, .minute, .second]
+        
+        var dateComponents = (Calendar.current as NSCalendar).components(calendarUnitFlags, from: Date())
+        
+        dateComponents.hour = 0
+        dateComponents.minute = 0
+        dateComponents.second = 0
+        
+        return Calendar.current.date(from: dateComponents)!
+    }
     
     
     
