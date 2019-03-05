@@ -13,6 +13,10 @@ class EventsTableViewController: UITableViewController {
     
     var events: [EKEvent]?
     
+    var startDate: Date?
+    
+    var endDate: Date?
+    
     //var todaysDate = Date()
     
     static let sharedController = EventsTableViewController()
@@ -28,100 +32,74 @@ class EventsTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        loadEvents()
-        //loadTodaysEvents()
-        
-        
-    }
-    var startDateTodayForPredicate: Date?
-    var endDateTodayForPredicate: Date?
-
-    func loadEvents() {
-        // Create a date formatter instance to use for converting a string to a date
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        
-        // Create start and end date NSDate instances to build a predicate for which events to select
-
-        
-        let startDate = dateFormatter.date(from: "2019-01-20")
-        let endDate = dateFormatter.date(from: "2020-02-23")
-        
-        if let startDate = startDate, let endDate = endDate {
-            //let eventStore = eventStore
-            
-            if let calendars = EventKitController.sharedController.calendar {
-                // Use an event store instance to create and properly configure an NSPredicate
-                let eventsPredicate = eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: [calendars])
-                
-                // Use the configured NSPredicate to find and return events in the store that match
-                self.events = eventStore.events(matching: eventsPredicate).sorted(){
-                    (e1: EKEvent, e2: EKEvent) -> Bool in
-                    return e1.startDate.compare(e2.startDate) == ComparisonResult.orderedAscending
-                }
-            }
-            tableView.reloadData()
+        if let startDate = startDate,
+            let endDate = endDate {
+            loadEvents(startDate: startDate, endDate: endDate)
         }
+        
+        
     }
     
     func loadTodaysEvents() {
-        // Create start and end date NSDate instances to build a predicate for which events to select
-        //let startDate = dateFormatter.date(from: "2019-01-20")
-        //let endDate = dateFormatter.date(from: "2020-02-23")
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let now = Date()
         
+        let startDate =  Calendar.current.startOfDay(for: now)
+        let tomorrowStartDate =  Calendar.current.date(byAdding: .day, value: 1, to: startDate) ?? startDate
         
+        let endDate = Calendar.current.date(byAdding: .second, value: -1, to: tomorrowStartDate) ?? tomorrowStartDate
         
-         let startDate = startDateTodayForPredicate!
-        let endDate = dateFormatter.date(from: "2019-03-04")
+        loadEvents(startDate: startDate, endDate: endDate)
         
-        
-        
-            //let eventStore = eventStore
-            
-            if let calendars = EventKitController.sharedController.calendar {
-                // Use an event store instance to create and properly configure an NSPredicate
-                let eventsPredicate = eventStore.predicateForEvents(withStart: startDate, end: endDate!, calendars: [calendars])
-                
-                // Use the configured NSPredicate to find and return events in the store that match
-                self.events = eventStore.events(matching: eventsPredicate).sorted(){
-                    (e1: EKEvent, e2: EKEvent) -> Bool in
-                    return e1.startDate.compare(e2.startDate) == ComparisonResult.orderedAscending
-                
-            }
-            tableView.reloadData()
-        }
     }
-//    func newDateToday() -> Date {
-//        let calendarUnitFlags: NSCalendar.Unit = [.year, .month, .day, .hour, .minute, .second]
-//
-//        var dateComponents = (Calendar.current as NSCalendar).components(calendarUnitFlags, from: Date())
-//
-//
-//        dateComponents.day = 86400
-//        todaysDate = Calendar.current.date(from: dateComponents)!
-//        return Calendar.current.date(from: dateComponents)!
-//
+    
+
+    func loadEvents(startDate: Date, endDate: Date) {
+        
+        
+        if let calendars = EventKitController.sharedController.calendar {
+            // Use an event store instance to create and properly configure an NSPredicate
+            let eventsPredicate = eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: [calendars])
+            
+            // Use the configured NSPredicate to find and return events in the store that match
+            self.events = eventStore.events(matching: eventsPredicate).sorted(){
+                (e1: EKEvent, e2: EKEvent) -> Bool in
+                return e1.startDate.compare(e2.startDate) == ComparisonResult.orderedAscending
+            }
+        }
+        tableView.reloadData()
+        
+    }
+    
+//    func loadTodaysEvents() {
+//        // Create start and end date NSDate instances to build a predicate for which events to select
+//        //let startDate = dateFormatter.date(from: "2019-01-20")
+//        //let endDate = dateFormatter.date(from: "2020-02-23")
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+//        
+//        
+//        
+//        let startDate = startDateTodayForPredicate
+//        let endDate = dateFormatter.date(from: "2019-03-05 11:59")!
+//        
+//        
+//        
+//            //let eventStore = eventStore
+//            
+//            if let calendars = EventKitController.sharedController.calendar {
+//                // Use an event store instance to create and properly configure an NSPredicate
+//                let eventsPredicate = eventStore.predicateForEvents(withStart: startDate!, end: endDate, calendars: [calendars])
+//                
+//                // Use the configured NSPredicate to find and return events in the store that match
+//                self.events = eventStore.events(matching: eventsPredicate).sorted(){
+//                    (e1: EKEvent, e2: EKEvent) -> Bool in
+//                    return e1.startDate.compare(e2.startDate) == ComparisonResult.orderedAscending
+//                
+//            }
+//            tableView.reloadData()
+//        }
 //    }
-//    var endTimeToday = Date()
-//
-//    func initialDatePickerValue() -> Date {
-//        let calendarUnitFlags: NSCalendar.Unit = [.year, .month, .day, .hour, .minute, .second]
-//
-//        var dateComponents = (Calendar.current as NSCalendar).components(calendarUnitFlags, from: Date())
-//
-//        dateComponents.hour = 0
-//        dateComponents.minute = 0
-//        dateComponents.second = 0
-//
-//        todaysDate = Calendar.current.date(from: dateComponents)!
-//        return Calendar.current.date(from: dateComponents)!
-//
-//    }
-//
-//
+
     func formatDate(_ date: Date?) -> String {
         if let date = date {
             let dateFormatter = DateFormatter()
@@ -131,31 +109,7 @@ class EventsTableViewController: UITableViewController {
 
         return ""
     }
-//
-//    func EndInitialDatePickerValue() -> Date {
-//        let calendarUnitFlags: NSCalendar.Unit = [.year, .month, .day, .hour, .minute, .second]
-//
-//        var dateComponents = (Calendar.current as NSCalendar).components(calendarUnitFlags, from: Date())
-//
-//        dateComponents.day = 1
-//
-//
-//        endTimeToday = Calendar.current.date(from: dateComponents)!
-//        return Calendar.current.date(from: dateComponents)!
-//
-//    }
-    
-//    func endTimeFormatter(days: Int) -> Date {
-//        var components = DateComponents()
-//        components.day = 1
-//       // components.setValue(days, for: .day);
-//        if  let newEndDate = endTimeToday {
-//        let expirationDate = Calendar.current.date(byAdding: components, to: newEndDate);
-//
-//        endTimeToday = expirationDate
-//        }
-//        return endTimeToday
-//    }
+
     
     func dateFormatWithTime(date: Date?) -> String {
         if let date = date {

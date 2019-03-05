@@ -26,17 +26,18 @@ class AddEventViewController: UIViewController {
     @IBOutlet weak var eventNameTextField: UITextField!
     
     
-    @IBAction func saveEventButtonTapped(_ sender: UIBarButtonItem) {
+    @IBAction func saveButtonTapped(_ sender: Any) {
         
-        createEvent()
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let eventsViewController = storyboard.instantiateViewController(withIdentifier: "EventsTableViewController")
-        let welcomeViewController = storyboard.instantiateViewController(withIdentifier: "WelcomeViewController")
-        let viewControllerArray = [welcomeViewController, eventsViewController]
-        self.navigationController?.setViewControllers(viewControllerArray, animated: true)
-
+     //  createEvent()
+//        
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let eventsViewController = storyboard.instantiateViewController(withIdentifier: "EventsTableViewController")
+//        let welcomeViewController = storyboard.instantiateViewController(withIdentifier: "WelcomeViewController")
+//        let viewControllerArray = [welcomeViewController, eventsViewController]
+//        self.navigationController?.setViewControllers(viewControllerArray, animated: true)
+       
     }
+    
     
     
     func editEvent() {
@@ -82,4 +83,37 @@ class AddEventViewController: UIViewController {
             endTimeDatePicker.date = event.endDate
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let eventsTableViewController = segue.destination as? EventsTableViewController else {return}
+        if segue.identifier == "saveButtonSegue" {
+            
+            createEvent()
+            
+            
+            if let eventStartOfDay = event?.startDate {
+                
+                let startDate =  Calendar.current.startOfDay(for: eventStartOfDay)
+                let tomorrowStartDate =  Calendar.current.date(byAdding: .day, value: 1, to: startDate) ?? startDate
+                
+                let endDate = Calendar.current.date(byAdding: .second, value: -1, to: tomorrowStartDate) ?? tomorrowStartDate
+                
+                
+                
+                
+                eventsTableViewController.startDate = startDate
+                eventsTableViewController.endDate = endDate
+                
+                
+                
+                
+            } else {return}
+            
+            
+            
+        }
+    }
 }
+
+//startDate = startofDay
+//endDate = endOfDay

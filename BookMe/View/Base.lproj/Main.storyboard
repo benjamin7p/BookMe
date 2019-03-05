@@ -236,7 +236,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="p3b-6G-HOy">
-                                <rect key="frame" x="16" y="110" width="343" height="162"/>
+                                <rect key="frame" x="16" y="66" width="343" height="162"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="162" id="1IK-OJ-bev"/>
                                 </constraints>
@@ -245,7 +245,7 @@
                                 </date>
                             </datePicker>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ufQ-19-mvp">
-                                <rect key="frame" x="16" y="72" width="343" height="30"/>
+                                <rect key="frame" x="16" y="28" width="343" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="3Cs-VZ-RjO"/>
                                 </constraints>
@@ -254,7 +254,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="mbm-oV-brp">
-                                <rect key="frame" x="16" y="280" width="343" height="162"/>
+                                <rect key="frame" x="16" y="236" width="343" height="162"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="162" id="8zs-Mh-VK9"/>
                                 </constraints>
@@ -280,7 +280,8 @@
                     <navigationItem key="navigationItem" id="tD7-m6-ZlC">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="3ec-bj-F6O">
                             <connections>
-                                <action selector="saveEventButtonTapped:" destination="SiY-XS-AVq" id="VPi-YY-1ko"/>
+                                <action selector="saveButtonTapped:" destination="SiY-XS-AVq" id="Ark-rK-GMA"/>
+                                <segue destination="2cm-4e-vsZ" kind="show" identifier="saveButtonSegue" id="XNN-Sf-Nfc"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -288,12 +289,11 @@
                         <outlet property="endTimeDatePicker" destination="mbm-oV-brp" id="W0S-s9-kR6"/>
                         <outlet property="eventNameTextField" destination="ufQ-19-mvp" id="U3h-8I-kvE"/>
                         <outlet property="startTimeDatePicker" destination="p3b-6G-HOy" id="pAC-Jk-zgU"/>
-                        <segue destination="2cm-4e-vsZ" kind="show" identifier="toTableViewSegue" id="MeO-sZ-fdm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dC3-vM-Gbs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3145" y="-291"/>
+            <point key="canvasLocation" x="3145" y="-306"/>
         </scene>
         <!--EventsListedPro-->
         <scene sceneID="R57-vj-8eT">
@@ -385,7 +385,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="muv-PC-5aR"/>
-        <segue reference="A1r-Wr-Rmg"/>
+        <segue reference="rd4-5f-bcn"/>
+        <segue reference="XNN-Sf-Nfc"/>
     </inferredMetricsTieBreakers>
 </document>

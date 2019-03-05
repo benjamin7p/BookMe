@@ -96,24 +96,8 @@ class WelcomeViewController: UIViewController {
         try? EventKitController.sharedController.eventStore.removeCalendar(calendar, commit: true)
     }
     
-//    var startTimeToday = Date()
-//    var endTimeToday = Date()
-//    var todaysDate = Date()
-    
-//    func initialDatePickerValue() -> Date {
-//        let calendarUnitFlags: NSCalendar.Unit = [.year, .month, .day, .hour, .minute, .second]
-//
-//        var dateComponents = (Calendar.current as NSCalendar).components(calendarUnitFlags, from: Date())
-//
-//        dateComponents.hour = 0
-//        dateComponents.minute = 0
-//        dateComponents.second = 0
-//
-//        startTimeToday = Calendar.current.date(from: dateComponents)!
-//        return Calendar.current.date(from: dateComponents)!
-//
-//    }
-//
+   
+
     
     func formatDate(_ date: Date?) -> String {
         if let date = date {
@@ -125,35 +109,32 @@ class WelcomeViewController: UIViewController {
         return ""
     }
     
-//    func startInitialDatePickerValue() -> Date {
-//        let calendarUnitFlags: NSCalendar.Unit = [.year, .month, .day, .hour, .minute, .second]
-//
-//        var dateComponents = (Calendar.current as NSCalendar).components(calendarUnitFlags, from: todaysDate)
-//
-//        startTimeToday = Calendar.current.date(from: dateComponents)!
-//        return Calendar.current.date(from: dateComponents)!
-//    }
-//
-//    func EndInitialDatePickerValue() -> Date {
-//        let calendarUnitFlags: NSCalendar.Unit = [.year, .month, .day, .hour, .minute, .second]
-//
-//        var dateComponents = (Calendar.current as NSCalendar).components(calendarUnitFlags, from: startTimeToday)
-//
-//        dateComponents.day = 1
-//
-//
-//        endTimeToday = Calendar.current.date(from: dateComponents)!
-//        return Calendar.current.date(from: dateComponents)!
-//
-//    }
-//
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "viewTodaysEventsSegue" {
             guard let eventsTableViewController = segue.destination as? EventsTableViewController else {return}
-            //eventsTableViewController.startDateTodayForPredicate = startTimeToday
-            //eventsTableViewController.endDateTodayForPredicate = endTimeToday
+            
+            let now = Date()
+            
+            let startDate =  Calendar.current.startOfDay(for: now)
+            let tomorrowStartDate =  Calendar.current.date(byAdding: .day, value: 1, to: startDate) ?? startDate
+            
+            let endDate = Calendar.current.date(byAdding: .second, value: -1, to: tomorrowStartDate) ?? tomorrowStartDate
+            
+            eventsTableViewController.startDate = startDate
+            eventsTableViewController.endDate = endDate
+            
+        } else if segue.identifier == "allEventsSegue" {
+            guard let eventsTableViewController = segue.destination as? EventsTableViewController else {return}
+            
+            
+            // not pulling todays events only tomorrow on
+            eventsTableViewController.startDate = Date()
+            eventsTableViewController.endDate = Date.distantFuture
         }
     }
+    
+
 
 }
