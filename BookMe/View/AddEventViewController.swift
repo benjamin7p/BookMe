@@ -21,23 +21,26 @@ class AddEventViewController: UIViewController {
     
     var event: EKEvent?
     
+    var delegate: EventAddedDelegate?
+    
     @IBOutlet weak var startTimeDatePicker: UIDatePicker!
     @IBOutlet weak var endTimeDatePicker: UIDatePicker!
     @IBOutlet weak var eventNameTextField: UITextField!
     
-    
-    @IBAction func saveButtonTapped(_ sender: Any) {
-        
-     //  createEvent()
-//        
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let eventsViewController = storyboard.instantiateViewController(withIdentifier: "EventsTableViewController")
-//        let welcomeViewController = storyboard.instantiateViewController(withIdentifier: "WelcomeViewController")
-//        let viewControllerArray = [welcomeViewController, eventsViewController]
-//        self.navigationController?.setViewControllers(viewControllerArray, animated: true)
-       
+    @IBAction func cancelButtonTapped(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
+    
+    @IBAction func saveButtonTapped(_ sender: Any) {
+        createEvent()
+    }
+//    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//    let eventsViewController = storyboard.instantiateViewController(withIdentifier: "EventsTableViewController")
+//    let welcomeViewController = storyboard.instantiateViewController(withIdentifier: "WelcomeViewController")
+//    let viewControllerArray = [welcomeViewController, eventsViewController]
+//    self.navigationController?.setViewControllers(viewControllerArray, animated: true)
+
     
     
     func editEvent() {
@@ -60,6 +63,9 @@ class AddEventViewController: UIViewController {
         do {
             try eventStore.save(newEvent, span: .thisEvent, commit: true)
             event = newEvent
+            
+            //delegate?.eventDidAdd()
+            self.dismiss(animated: true, completion: nil)
         } catch {
             let alert = UIAlertController(title: "event could not save", message: (error as NSError).localizedDescription, preferredStyle: .alert)
             let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -108,7 +114,6 @@ class AddEventViewController: UIViewController {
                 
                 
             } else {return}
-            
             
             
         }

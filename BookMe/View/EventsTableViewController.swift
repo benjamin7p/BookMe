@@ -9,7 +9,7 @@
 import UIKit
 import EventKit
 
-class EventsTableViewController: UITableViewController {
+class EventsTableViewController: UITableViewController, EventAddedDelegate {
     
     var events: [EKEvent]?
     
@@ -25,32 +25,42 @@ class EventsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //calendars = EventKitController.sharedController.calendar
+        
         self.tableView.backgroundColor = UIColor.lightGray
         
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
         if let startDate = startDate,
             let endDate = endDate {
             loadEvents(startDate: startDate, endDate: endDate)
+            
         }
-        
-        
     }
     
-    func loadTodaysEvents() {
+    
+    
+    func loadAllEvents() {
         let now = Date()
         
-        let startDate =  Calendar.current.startOfDay(for: now)
-        let tomorrowStartDate =  Calendar.current.date(byAdding: .day, value: 1, to: startDate) ?? startDate
+        let newstartDate =  Calendar.current.startOfDay(for: now)
         
-        let endDate = Calendar.current.date(byAdding: .second, value: -1, to: tomorrowStartDate) ?? tomorrowStartDate
-        
-        loadEvents(startDate: startDate, endDate: endDate)
+        let startDateAll = Calendar.current.date(byAdding: .day, value: -1, to: newstartDate)
+        let endDateAll = Date.distantFuture
+
+        if let calendars = EventKitController.sharedController.calendar {
+            // Use an event store instance to create and properly configure an NSPredicate
+            let eventsPredicate = eventStore.predicateForEvents(withStart: startDateAll!, end: endDateAll, calendars: [calendars])
+            
+            // Use the configured NSPredicate to find and return events in the store that match
+            self.events = eventStore.events(matching: eventsPredicate).sorted(){
+                (e1: EKEvent, e2: EKEvent) -> Bool in
+                return e1.startDate.compare(e2.startDate) == ComparisonResult.orderedAscending
+            }
+        }
+        tableView.reloadData()
         
     }
+        
+        
+    
     
 
     func loadEvents(startDate: Date, endDate: Date) {
@@ -68,6 +78,11 @@ class EventsTableViewController: UITableViewController {
         }
         tableView.reloadData()
         
+    }
+    
+    func eventDidAdd() {
+        //self.loadTodaysEvents()
+        self.tableView.reloadData()
     }
     
 //    func loadTodaysEvents() {

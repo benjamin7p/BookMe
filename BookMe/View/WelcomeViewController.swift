@@ -14,19 +14,8 @@ class WelcomeViewController: UIViewController {
     @IBOutlet weak var grantedPermissionView: UIView!
     @IBOutlet weak var needPermissionView: UIView!
    
-    @IBAction func viewTodaysEventsButtonTapped(_ sender: Any) {
-        
-        //performSegue(withIdentifier: "viewTodaysEventsSegue", sender: nil)
-        
-    }
-    
-    @IBAction func viewAllEventsButtonTapped(_ sender: Any) {
-        
-    }
-    //    static let sharedContoller = WelcomeViewController()
-    
-//    let eventStore = EKEventStore()
-//
+   
+   
     var calendar: EKCalendar?
     
     override func viewDidLoad() {
@@ -68,7 +57,7 @@ class WelcomeViewController: UIViewController {
                 DispatchQueue.main.async {
                     EventKitController.sharedController.createCalendar()
                     self.refreshViewsWithPermission()
-                    
+                    EventKitController.sharedController.loadCalendars()
                 }
             } else {
                 DispatchQueue.main.async {
@@ -125,13 +114,21 @@ class WelcomeViewController: UIViewController {
             eventsTableViewController.startDate = startDate
             eventsTableViewController.endDate = endDate
             
-        } else if segue.identifier == "allEventsSegue" {
+        } else if segue.identifier == "viewAllEvents" {
             guard let eventsTableViewController = segue.destination as? EventsTableViewController else {return}
             
+            let now = Date()
+            
+            let newstartDate =  Calendar.current.startOfDay(for: now)
+            
+            let startDate = Calendar.current.date(byAdding: .day, value: -1, to: newstartDate)
             
             // not pulling todays events only tomorrow on
-            eventsTableViewController.startDate = Date()
+            eventsTableViewController.startDate = startDate
             eventsTableViewController.endDate = Date.distantFuture
+            
+            
+            
         }
     }
     

@@ -18,6 +18,7 @@
 		9A057A0622148D84002016C0 /* UIViewExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A057A0522148D84002016C0 /* UIViewExtentions.swift */; };
 		9A060ACD2215BA0500FB4F31 /* EventKitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A060ACC2215BA0500FB4F31 /* EventKitController.swift */; };
 		9A060ACF2215D88D00FB4F31 /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A060ACE2215D88D00FB4F31 /* AddEventViewController.swift */; };
+		9A4811FA223050DF0001E95B /* EventAddedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4811F9223050DF0001E95B /* EventAddedDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		9A057A0522148D84002016C0 /* UIViewExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtentions.swift; sourceTree = "<group>"; };
 		9A060ACC2215BA0500FB4F31 /* EventKitController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventKitController.swift; sourceTree = "<group>"; };
 		9A060ACE2215D88D00FB4F31 /* AddEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
+		9A4811F9223050DF0001E95B /* EventAddedDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAddedDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 		9A0579FC22146D47002016C0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9A4811F9223050DF0001E95B /* EventAddedDelegate.swift */,
 				9A0579E822146CA1002016C0 /* AppDelegate.swift */,
 			);
 			path = Model;
@@ -182,6 +185,7 @@
 				9A060ACD2215BA0500FB4F31 /* EventKitController.swift in Sources */,
 				9A0579E922146CA1002016C0 /* AppDelegate.swift in Sources */,
 				9A057A042214864F002016C0 /* EventsListedProviderViewController.swift in Sources */,
+				9A4811FA223050DF0001E95B /* EventAddedDelegate.swift in Sources */,
 				9A060ACF2215D88D00FB4F31 /* AddEventViewController.swift in Sources */,
 				9A03A3892227078400E866B4 /* EventsTableViewController.swift in Sources */,
 				9A04E8B72225BBB400C518F4 /* WelcomeViewController.swift in Sources */,
