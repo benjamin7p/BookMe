@@ -15,9 +15,9 @@ class AddEventViewController: UIViewController {
 
     static let sharedController = AddEventViewController()
     
-    var eventStore = EventKitController.sharedController.eventStore
+   // let eventStore = EventKitController.sharedController.eventStore
     
-    var calendar = EventKitController.sharedController.calendar
+    
     
     var event: EKEvent?
     
@@ -53,7 +53,7 @@ class AddEventViewController: UIViewController {
     func createEvent()  {
 
         editEvent()
-        let newEvent = EKEvent(eventStore: eventStore)
+        let newEvent = EKEvent(eventStore: EventKitController.sharedController.eventStore)
 
         newEvent.calendar = EventKitController.sharedController.calendar
         newEvent.title = self.eventNameTextField.text ?? "Event Name"
@@ -61,7 +61,7 @@ class AddEventViewController: UIViewController {
         newEvent.endDate = self.endTimeDatePicker.date
 
         do {
-            try eventStore.save(newEvent, span: .thisEvent, commit: true)
+            try EventKitController.sharedController.eventStore.save(newEvent, span: .thisEvent, commit: true)
             event = newEvent
             
             //delegate?.eventDidAdd()
@@ -79,7 +79,7 @@ class AddEventViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        calendar = EventKitController.sharedController.calendar
+        //calendar = EventKitController.sharedController.calendar
         self.startTimeDatePicker.setDate(EventKitController.sharedController.initialDatePickerValue(), animated: true)
         self.endTimeDatePicker.setDate(EventKitController.sharedController.initialDatePickerValue(), animated: true)
         
@@ -107,8 +107,8 @@ class AddEventViewController: UIViewController {
                 
                 
                 
-                eventsTableViewController.startDate = startDate
-                eventsTableViewController.endDate = endDate
+               // eventsTableViewController.startDate = startDate
+                //eventsTableViewController.endDate = endDate
                 
                 
                 

@@ -22,7 +22,7 @@ class EventKitController {
     
     func loadCalendars() {
         for calendar in eventStore.calendars(for: .event) {
-            if calendar.title == "Work Calendar" {
+            if calendar.title == "My Work Calendar" {
                 self.calendar = calendar
             }
         }
@@ -57,7 +57,7 @@ class EventKitController {
         
         // Probably want to prevent someone from saving a calendar
         // if they don't type in a name...
-        newCalendar.title = "Work Calendar"
+        newCalendar.title = "My Work Calendar"
         
         // Access list of available sources from the Event Store
         let sourcesInEventStore = eventStore.sources

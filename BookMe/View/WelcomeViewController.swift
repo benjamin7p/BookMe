@@ -104,27 +104,27 @@ class WelcomeViewController: UIViewController {
         if segue.identifier == "viewTodaysEventsSegue" {
             guard let eventsTableViewController = segue.destination as? EventsTableViewController else {return}
             
-            let now = Date()
             
-            let startDate =  Calendar.current.startOfDay(for: now)
+            
+            let startDate =  Calendar.current.startOfDay(for: Date())
             let tomorrowStartDate =  Calendar.current.date(byAdding: .day, value: 1, to: startDate) ?? startDate
             
             let endDate = Calendar.current.date(byAdding: .second, value: -1, to: tomorrowStartDate) ?? tomorrowStartDate
             
-            eventsTableViewController.startDate = startDate
+            //eventsTableViewController.startDate = startDate
             eventsTableViewController.endDate = endDate
             
         } else if segue.identifier == "viewAllEvents" {
             guard let eventsTableViewController = segue.destination as? EventsTableViewController else {return}
             
-            let now = Date()
-            
-            let newstartDate =  Calendar.current.startOfDay(for: now)
-            
-            let startDate = Calendar.current.date(byAdding: .day, value: -1, to: newstartDate)
-            
+//            let now = Date()
+//            
+//            let newstartDate =  Calendar.current.startOfDay(for: now)
+//            
+//            let startDate = Calendar.current.date(byAdding: .day, value: -1, to: newstartDate)
+//            
             // not pulling todays events only tomorrow on
-            eventsTableViewController.startDate = startDate
+            //eventsTableViewController.startDate = startDate
             eventsTableViewController.endDate = Date.distantFuture
             
             

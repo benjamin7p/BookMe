@@ -13,7 +13,7 @@ class EventsTableViewController: UITableViewController, EventAddedDelegate {
     
     var events: [EKEvent]?
     
-    var startDate: Date?
+    //var startDate: Date?
     
     var endDate: Date?
     
@@ -23,48 +23,66 @@ class EventsTableViewController: UITableViewController, EventAddedDelegate {
     
     let eventStore = EventKitController.sharedController.eventStore
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.tableView.backgroundColor = UIColor.lightGray
+        //loadEvents()
+//        if let endDate = endDate {
+//            loadEvents(endDate: endDate)
+//        } else {
+//            loadEvents(endDate: Date.distantFuture)
+//        }
         
-        if let startDate = startDate,
-            let endDate = endDate {
-            loadEvents(startDate: startDate, endDate: endDate)
-            
-        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        //loadEvents()
+        loadEventsWithEndDate()
+        
     }
     
     
     
-    func loadAllEvents() {
-        let now = Date()
+    func loadEventsWithEndDate() {
         
-        let newstartDate =  Calendar.current.startOfDay(for: now)
         
-        let startDateAll = Calendar.current.date(byAdding: .day, value: -1, to: newstartDate)
-        let endDateAll = Date.distantFuture
-
-        if let calendars = EventKitController.sharedController.calendar {
-            // Use an event store instance to create and properly configure an NSPredicate
-            let eventsPredicate = eventStore.predicateForEvents(withStart: startDateAll!, end: endDateAll, calendars: [calendars])
+        let newstartDate =  Calendar.current.startOfDay(for: Date())
+        
+        let startDate = Calendar.current.date(byAdding: .hour, value: -7, to: newstartDate)
+        
+        if let endDate = endDate {
             
-            // Use the configured NSPredicate to find and return events in the store that match
-            self.events = eventStore.events(matching: eventsPredicate).sorted(){
-                (e1: EKEvent, e2: EKEvent) -> Bool in
-                return e1.startDate.compare(e2.startDate) == ComparisonResult.orderedAscending
+            if let calendars = EventKitController.sharedController.calendar {
+                // Use an event store instance to create and properly configure an NSPredicate
+                let eventsPredicate = eventStore.predicateForEvents(withStart: startDate!, end: endDate, calendars: [calendars])
+                
+                // Use the configured NSPredicate to find and return events in the store that match
+                self.events = eventStore.events(matching: eventsPredicate).sorted(){
+                    (e1: EKEvent, e2: EKEvent) -> Bool in
+                    return e1.startDate.compare(e2.startDate) == ComparisonResult.orderedAscending
+                }
             }
         }
         tableView.reloadData()
         
     }
-        
-        
+    
+        // this makes my start date yesterday
     
     
 
-    func loadEvents(startDate: Date, endDate: Date) {
+    func loadEvents() {
         
+        let now = Date()
+        
+        let newStartDate =  Calendar.current.startOfDay(for: now)
+        
+        let startDate = Calendar.current.date(byAdding: .day, value: -1, to: newStartDate)
+        if let startDate = startDate {
+        let endDate = Date.distantFuture
         
         if let calendars = EventKitController.sharedController.calendar {
             // Use an event store instance to create and properly configure an NSPredicate
@@ -77,7 +95,7 @@ class EventsTableViewController: UITableViewController, EventAddedDelegate {
             }
         }
         tableView.reloadData()
-        
+        }
     }
     
     func eventDidAdd() {
