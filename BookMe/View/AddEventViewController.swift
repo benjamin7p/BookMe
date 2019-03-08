@@ -26,14 +26,17 @@ class AddEventViewController: UIViewController {
     @IBOutlet weak var startTimeDatePicker: UIDatePicker!
     @IBOutlet weak var endTimeDatePicker: UIDatePicker!
     @IBOutlet weak var eventNameTextField: UITextField!
+    @IBOutlet weak var eventNotes: UITextView!
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         createEvent()
+        self.navigationController?.popViewController(animated: true)
     }
 //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
 //    let eventsViewController = storyboard.instantiateViewController(withIdentifier: "EventsTableViewController")
@@ -50,6 +53,7 @@ class AddEventViewController: UIViewController {
     }
 
     
+    
     func createEvent()  {
 
         editEvent()
@@ -59,10 +63,13 @@ class AddEventViewController: UIViewController {
         newEvent.title = self.eventNameTextField.text ?? "Event Name"
         newEvent.startDate = self.startTimeDatePicker.date
         newEvent.endDate = self.endTimeDatePicker.date
-
+        newEvent.notes = self.eventNotes.text
+        
+        
         do {
             try EventKitController.sharedController.eventStore.save(newEvent, span: .thisEvent, commit: true)
             event = newEvent
+            
             
             //delegate?.eventDidAdd()
             self.dismiss(animated: true, completion: nil)
@@ -87,6 +94,8 @@ class AddEventViewController: UIViewController {
             eventNameTextField.text = event.title
             startTimeDatePicker.date = event.startDate
             endTimeDatePicker.date = event.endDate
+            eventNotes.text = event.notes
+            
         }
     }
     

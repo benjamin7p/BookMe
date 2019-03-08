@@ -23,35 +23,65 @@ class EventsTableViewController: UITableViewController, EventAddedDelegate {
     
     let eventStore = EventKitController.sharedController.eventStore
     
+    @IBOutlet weak var segmentedBar: UISegmentedControl!
+    
+    
+    
+    @IBAction func segmentedBar(_ sender: Any) {
+        
+        let getIndex = segmentedBar.selectedSegmentIndex
+        
+        switch (getIndex) {
+        case 0:
+            loadEventsAll(endDateToLoad: endDateAll())
+            
+        case 1:
+            loadEventsAll(endDateToLoad: endDateCreator())
+        
+        default:
+            loadEventsAll(endDateToLoad: endDateAll())
+        }
+    }
+    
+    func endDateCreator() -> Date {
+        let startDate =  Calendar.current.startOfDay(for: Date())
+        let tomorrowStartDate =  Calendar.current.date(byAdding: .day, value: 1, to: startDate) ?? startDate
+        
+        let endDate = Calendar.current.date(byAdding: .second, value: -1, to: tomorrowStartDate) ?? tomorrowStartDate
+        
+        return endDate
+    }
+    
+    func endDateAll() -> Date {
+        let endDate = Date.distantFuture
+        return endDate
+    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.tableView.backgroundColor = UIColor.lightGray
-        //loadEvents()
-//        if let endDate = endDate {
-//            loadEvents(endDate: endDate)
-//        } else {
-//            loadEvents(endDate: Date.distantFuture)
-//        }
-        
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        //loadEvents()
-        loadEventsWithEndDate()
+       
+        if let endDate = endDate {
+           loadEventsAll(endDateToLoad: endDate)
+        }
         
     }
     
     
     
-    func loadEventsWithEndDate() {
+    func loadEvents() {
         
         
         let newstartDate =  Calendar.current.startOfDay(for: Date())
         
         let startDate = Calendar.current.date(byAdding: .hour, value: -7, to: newstartDate)
+        
         
         if let endDate = endDate {
             
@@ -70,68 +100,38 @@ class EventsTableViewController: UITableViewController, EventAddedDelegate {
         
     }
     
-        // this makes my start date yesterday
+        
     
     
 
-    func loadEvents() {
+    func loadEventsAll(endDateToLoad: Date) {
+
         
-        let now = Date()
+        let newstartDate =  Calendar.current.startOfDay(for: Date())
         
-        let newStartDate =  Calendar.current.startOfDay(for: now)
-        
-        let startDate = Calendar.current.date(byAdding: .day, value: -1, to: newStartDate)
-        if let startDate = startDate {
-        let endDate = Date.distantFuture
-        
-        if let calendars = EventKitController.sharedController.calendar {
-            // Use an event store instance to create and properly configure an NSPredicate
-            let eventsPredicate = eventStore.predicateForEvents(withStart: startDate, end: endDate, calendars: [calendars])
-            
-            // Use the configured NSPredicate to find and return events in the store that match
-            self.events = eventStore.events(matching: eventsPredicate).sorted(){
-                (e1: EKEvent, e2: EKEvent) -> Bool in
-                return e1.startDate.compare(e2.startDate) == ComparisonResult.orderedAscending
+        let startDate = Calendar.current.date(byAdding: .hour, value: -7, to: newstartDate)
+    
+            if let calendars = EventKitController.sharedController.calendar {
+                // Use an event store instance to create and properly configure an NSPredicate
+                let eventsPredicate = eventStore.predicateForEvents(withStart: startDate!, end: endDateToLoad, calendars: [calendars])
+                
+                // Use the configured NSPredicate to find and return events in the store that match
+                self.events = eventStore.events(matching: eventsPredicate).sorted(){
+                    (e1: EKEvent, e2: EKEvent) -> Bool in
+                    return e1.startDate.compare(e2.startDate) == ComparisonResult.orderedAscending
+                }
             }
-        }
+        
         tableView.reloadData()
-        }
+        
     }
     
     func eventDidAdd() {
-        //self.loadTodaysEvents()
-        self.tableView.reloadData()
+        segmentedBar.selectedSegmentIndex = 1
+        tableView.reloadData()
+       
     }
     
-//    func loadTodaysEvents() {
-//        // Create start and end date NSDate instances to build a predicate for which events to select
-//        //let startDate = dateFormatter.date(from: "2019-01-20")
-//        //let endDate = dateFormatter.date(from: "2020-02-23")
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
-//        
-//        
-//        
-//        let startDate = startDateTodayForPredicate
-//        let endDate = dateFormatter.date(from: "2019-03-05 11:59")!
-//        
-//        
-//        
-//            //let eventStore = eventStore
-//            
-//            if let calendars = EventKitController.sharedController.calendar {
-//                // Use an event store instance to create and properly configure an NSPredicate
-//                let eventsPredicate = eventStore.predicateForEvents(withStart: startDate!, end: endDate, calendars: [calendars])
-//                
-//                // Use the configured NSPredicate to find and return events in the store that match
-//                self.events = eventStore.events(matching: eventsPredicate).sorted(){
-//                    (e1: EKEvent, e2: EKEvent) -> Bool in
-//                    return e1.startDate.compare(e2.startDate) == ComparisonResult.orderedAscending
-//                
-//            }
-//            tableView.reloadData()
-//        }
-//    }
 
     func formatDate(_ date: Date?) -> String {
         if let date = date {
@@ -155,9 +155,7 @@ class EventsTableViewController: UITableViewController, EventAddedDelegate {
     func deleteThisEvent(eventToDelete: EKEvent) {
         try? EventKitController.sharedController.eventStore.remove(eventToDelete, span: .thisEvent, commit: true)
     }
-//    func deleteCalendar(calendar: EKCalendar) {
-//        try? eventStore.removeCalendar(calendar, commit: true)
-//    }
+
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.backgroundColor = UIColor.clear

@@ -10,66 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Event View Controller-->
-        <scene sceneID="AiP-wC-22m">
-            <objects>
-                <viewController id="xUF-mZ-nB6" customClass="EKEventViewController" customModule="BookMe" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="9hs-8S-ab6">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yu9-l0-rOo">
-                                <rect key="frame" x="16" y="279" width="343" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aV3-jC-PnU">
-                                <rect key="frame" x="16" y="308" width="343" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Jf-eQ-oT7">
-                                <rect key="frame" x="16" y="337" width="343" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nQd-tL-Aop">
-                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="Title" id="RVV-lJ-GbV">
-                                        <barButtonItem key="rightBarButtonItem" title="Edit" id="21l-S8-EjZ"/>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="yu9-l0-rOo" firstAttribute="leading" secondItem="BEG-8I-bW4" secondAttribute="leading" constant="16" id="22H-6M-aJz"/>
-                            <constraint firstItem="BEG-8I-bW4" firstAttribute="trailing" secondItem="aV3-jC-PnU" secondAttribute="trailing" constant="16" id="3Rz-hE-cSA"/>
-                            <constraint firstItem="BEG-8I-bW4" firstAttribute="trailing" secondItem="7Jf-eQ-oT7" secondAttribute="trailing" constant="16" id="ArV-iy-Joo"/>
-                            <constraint firstItem="yu9-l0-rOo" firstAttribute="top" secondItem="BEG-8I-bW4" secondAttribute="top" constant="259" id="RPN-N5-tQS"/>
-                            <constraint firstItem="aV3-jC-PnU" firstAttribute="top" secondItem="yu9-l0-rOo" secondAttribute="bottom" constant="8" id="Ttg-7j-uw1"/>
-                            <constraint firstItem="aV3-jC-PnU" firstAttribute="leading" secondItem="BEG-8I-bW4" secondAttribute="leading" constant="16" id="WT8-tb-bzn"/>
-                            <constraint firstItem="7Jf-eQ-oT7" firstAttribute="top" secondItem="aV3-jC-PnU" secondAttribute="bottom" constant="8" id="Zpc-FM-EYz"/>
-                            <constraint firstItem="7Jf-eQ-oT7" firstAttribute="leading" secondItem="BEG-8I-bW4" secondAttribute="leading" constant="16" id="xIQ-ht-mYk"/>
-                            <constraint firstItem="BEG-8I-bW4" firstAttribute="trailing" secondItem="yu9-l0-rOo" secondAttribute="trailing" constant="16" id="zgN-dl-37T"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="BEG-8I-bW4"/>
-                    </view>
-                    <connections>
-                        <outlet property="eventEndTimeLabel" destination="7Jf-eQ-oT7" id="of7-Qa-9BY"/>
-                        <outlet property="eventNameLabel" destination="yu9-l0-rOo" id="JPz-aT-fqf"/>
-                        <outlet property="eventStartTimeLabel" destination="aV3-jC-PnU" id="X3c-oW-oke"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4zA-Lf-lXe" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1516" y="-797"/>
-        </scene>
         <!--WelcomeViewController-->
         <scene sceneID="J0v-hu-JFd">
             <objects>
@@ -196,7 +136,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="du5-DX-sn9" kind="presentation" identifier="editCellSegue" id="D3V-bU-lBc"/>
+                                    <segue destination="SiY-XS-AVq" kind="show" identifier="editCellSegue" id="2G8-XY-stW"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -206,12 +146,27 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="KG4-SA-IYe">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Yaf-Qe-2wD">
+                            <rect key="frame" x="50" y="7" width="274.5" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="View All"/>
+                                <segment title="View Today"/>
+                            </segments>
+                            <connections>
+                                <action selector="segmentedBar:" destination="2cm-4e-vsZ" eventType="valueChanged" id="Dd7-aG-65g"/>
+                            </connections>
+                        </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="5ab-Sb-hNn">
                             <connections>
                                 <segue destination="du5-DX-sn9" kind="presentation" identifier="addButtonSegue" id="a9u-C5-DK8"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="segmentedBar" destination="Yaf-Qe-2wD" id="2Oa-tO-Guv"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YSm-NF-j2p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -225,7 +180,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="p3b-6G-HOy">
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="15" translatesAutoresizingMaskIntoConstraints="NO" id="p3b-6G-HOy">
                                 <rect key="frame" x="16" y="110" width="343" height="162"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="162" id="1IK-OJ-bev"/>
@@ -252,16 +207,28 @@
                                     <!--2019-02-26 19:27:17 +0000-->
                                 </date>
                             </datePicker>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Notes: " translatesAutoresizingMaskIntoConstraints="NO" id="06v-xB-mIc">
+                                <rect key="frame" x="16" y="450" width="343" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="BEP-rG-3lZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="r2Q-qC-3tK" firstAttribute="trailing" secondItem="06v-xB-mIc" secondAttribute="trailing" constant="16" id="6os-m6-h9L"/>
                             <constraint firstItem="r2Q-qC-3tK" firstAttribute="trailing" secondItem="mbm-oV-brp" secondAttribute="trailing" constant="16" id="8oK-5f-Exa"/>
                             <constraint firstItem="p3b-6G-HOy" firstAttribute="top" secondItem="ufQ-19-mvp" secondAttribute="bottom" constant="8" id="Fpy-dV-iIK"/>
                             <constraint firstItem="ufQ-19-mvp" firstAttribute="leading" secondItem="r2Q-qC-3tK" secondAttribute="leading" constant="16" id="GAB-NE-oLm"/>
                             <constraint firstItem="mbm-oV-brp" firstAttribute="leading" secondItem="r2Q-qC-3tK" secondAttribute="leading" constant="16" id="Vts-iw-1BT"/>
                             <constraint firstItem="p3b-6G-HOy" firstAttribute="leading" secondItem="r2Q-qC-3tK" secondAttribute="leading" constant="16" id="edj-4o-Zf0"/>
+                            <constraint firstItem="06v-xB-mIc" firstAttribute="leading" secondItem="r2Q-qC-3tK" secondAttribute="leading" constant="16" id="grm-tX-hBc"/>
                             <constraint firstItem="ufQ-19-mvp" firstAttribute="top" secondItem="r2Q-qC-3tK" secondAttribute="top" constant="8" id="hP8-OO-7Rc"/>
                             <constraint firstItem="r2Q-qC-3tK" firstAttribute="trailing" secondItem="p3b-6G-HOy" secondAttribute="trailing" constant="16" id="nTv-Kc-BCC"/>
+                            <constraint firstItem="06v-xB-mIc" firstAttribute="top" secondItem="mbm-oV-brp" secondAttribute="bottom" constant="8" id="rhB-fY-DFG"/>
                             <constraint firstItem="mbm-oV-brp" firstAttribute="top" secondItem="p3b-6G-HOy" secondAttribute="bottom" constant="8" id="ui2-k7-xFV"/>
                             <constraint firstItem="r2Q-qC-3tK" firstAttribute="trailing" secondItem="ufQ-19-mvp" secondAttribute="trailing" constant="16" id="ydQ-FX-W8o"/>
                         </constraints>
@@ -282,12 +249,13 @@
                     <connections>
                         <outlet property="endTimeDatePicker" destination="mbm-oV-brp" id="W0S-s9-kR6"/>
                         <outlet property="eventNameTextField" destination="ufQ-19-mvp" id="U3h-8I-kvE"/>
+                        <outlet property="eventNotes" destination="06v-xB-mIc" id="x5g-Bo-e4v"/>
                         <outlet property="startTimeDatePicker" destination="p3b-6G-HOy" id="pAC-Jk-zgU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dC3-vM-Gbs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5679" y="134"/>
+            <point key="canvasLocation" x="5677.6000000000004" y="133.5832083958021"/>
         </scene>
         <!--EventsListedPro-->
         <scene sceneID="R57-vj-8eT">
@@ -393,11 +361,11 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fyb-LX-fx7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4774" y="134"/>
+            <point key="canvasLocation" x="4812" y="529"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="D3V-bU-lBc"/>
+        <segue reference="2G8-XY-stW"/>
         <segue reference="zPX-EE-A8Q"/>
     </inferredMetricsTieBreakers>
 </document>

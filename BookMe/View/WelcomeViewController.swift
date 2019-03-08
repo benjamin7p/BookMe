@@ -106,27 +106,27 @@ class WelcomeViewController: UIViewController {
             
             
             
-            let startDate =  Calendar.current.startOfDay(for: Date())
-            let tomorrowStartDate =  Calendar.current.date(byAdding: .day, value: 1, to: startDate) ?? startDate
+            let startOfDay =  Calendar.current.startOfDay(for: Date())
+            let startofDayZero = Calendar.current.date(byAdding: .hour, value: -7, to: startOfDay)
+            let tomorrowStartDate =  Calendar.current.date(byAdding: .day, value: 1, to: startofDayZero!) ?? startOfDay
             
             let endDate = Calendar.current.date(byAdding: .second, value: -1, to: tomorrowStartDate) ?? tomorrowStartDate
             
-            //eventsTableViewController.startDate = startDate
+            
             eventsTableViewController.endDate = endDate
+            
+            eventsTableViewController.segmentedBar.selectedSegmentIndex = 1
+            
+            
             
         } else if segue.identifier == "viewAllEvents" {
             guard let eventsTableViewController = segue.destination as? EventsTableViewController else {return}
             
-//            let now = Date()
-//            
-//            let newstartDate =  Calendar.current.startOfDay(for: now)
-//            
-//            let startDate = Calendar.current.date(byAdding: .day, value: -1, to: newstartDate)
-//            
-            // not pulling todays events only tomorrow on
-            //eventsTableViewController.startDate = startDate
-            eventsTableViewController.endDate = Date.distantFuture
+
+            let endDate = Date.distantFuture
+            eventsTableViewController.endDate = endDate
             
+            eventsTableViewController.segmentedBar.selectedSegmentIndex = 0
             
             
         }

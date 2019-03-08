@@ -28,6 +28,7 @@ class EventKitController {
         }
     }
     
+    
     func deleteCalendar(calendar: EKCalendar) {
         try? eventStore.removeCalendar(calendar, commit: true)
     }
