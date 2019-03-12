@@ -205,7 +205,7 @@ class EventsTableViewController: UITableViewController, EventAddedDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editCellSegue" {
-            guard let addEventViewController = segue.destination as? AddEventViewController,
+            guard let addEventViewController = segue.destination as? AddEventTableViewController,
                 let selectedRow = self.tableView.indexPathForSelectedRow?.row else {return}
             
             let selectedEvent = events?[selectedRow]
