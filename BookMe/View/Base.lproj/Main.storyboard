@@ -384,21 +384,21 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Appointment" id="ioT-ot-Fxi">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="1if-Xu-9f5" detailTextLabel="sxU-B0-m5N" style="IBUITableViewCellStyleValue1" id="7Sd-7M-dkE">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="J3b-LQ-FlW" detailTextLabel="aTC-ic-Oqy" style="IBUITableViewCellStyleValue1" id="7Sd-7M-dkE">
                                         <rect key="frame" x="0.0" y="155.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7Sd-7M-dkE" id="Jcl-Dt-hQF">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1if-Xu-9f5">
-                                                    <rect key="frame" x="16" y="12" width="36" height="20.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Start Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="J3b-LQ-FlW">
+                                                    <rect key="frame" x="16" y="12" width="78" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sxU-B0-m5N">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aTC-ic-Oqy">
                                                     <rect key="frame" x="315" y="12" width="44" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -464,7 +464,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="215.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="15" translatesAutoresizingMaskIntoConstraints="NO" id="0j3-Ba-fdm">
+                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="15" translatesAutoresizingMaskIntoConstraints="NO" id="0j3-Ba-fdm">
                                                     <rect key="frame" x="16" y="0.0" width="343" height="216"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="574092783.06819296">
                                                         <!--2019-03-12 14:13:03 +0000-->
@@ -513,7 +513,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="215.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="15" translatesAutoresizingMaskIntoConstraints="NO" id="xw2-tT-h6P">
+                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="15" translatesAutoresizingMaskIntoConstraints="NO" id="xw2-tT-h6P">
                                                     <rect key="frame" x="8" y="-27" width="359" height="216"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="574092822.04073596">
                                                         <!--2019-03-12 14:13:42 +0000-->
@@ -599,14 +599,14 @@
                     <size key="freeformSize" width="375" height="1500"/>
                     <connections>
                         <outlet property="endTimeDatePicker" destination="xw2-tT-h6P" id="PvV-EA-NbJ"/>
-                        <outlet property="endTimeLabel" destination="ks3-Lp-wFd" id="fAn-Pa-hJr"/>
+                        <outlet property="endTimeLabel" destination="TIT-WM-tu2" id="Bwd-fm-5Xe"/>
                         <outlet property="eventNameTextField" destination="IZg-kP-WVf" id="TkN-Yf-TAu"/>
                         <outlet property="eventNotesLabel" destination="xXT-Lc-pxI" id="8uw-9M-PSn"/>
                         <outlet property="eventNotesTextView" destination="idB-cS-Zp2" id="ND4-EN-EWV"/>
-                        <outlet property="startDateLabel" destination="1if-Xu-9f5" id="LkF-LW-jFL"/>
+                        <outlet property="startDateLabel" destination="aTC-ic-Oqy" id="RDy-0S-98h"/>
                         <outlet property="startDatePicker" destination="nDX-qj-KRE" id="bMq-ar-L8g"/>
                         <outlet property="startTimeDatePicker" destination="0j3-Ba-fdm" id="LVW-PR-ayn"/>
-                        <outlet property="startTimeLabel" destination="3aE-jr-pSg" id="Lbh-NU-gVw"/>
+                        <outlet property="startTimeLabel" destination="3sV-0m-SQT" id="QJH-aK-Hp6"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pue-oD-0Fo" userLabel="First Responder" sceneMemberID="firstResponder"/>

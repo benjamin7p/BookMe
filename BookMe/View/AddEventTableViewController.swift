@@ -59,10 +59,17 @@ class AddEventTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         self.startDatePicker.setDate(EventKitController.sharedController.initialDatePickerValue(), animated: true)
         self.startTimeDatePicker.setDate(EventKitController.sharedController.initialDatePickerValue(), animated: true)
         self.endTimeDatePicker.setDate(EventKitController.sharedController.initialDatePickerValue().addingTimeInterval(3600), animated: true)
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .long
+        dateFormatter.dateFormat = "MM/dd hh:mm"
+        
+        self.startDateLabel.text = dateFormatter.string(from: startDatePicker.date)
+        self.startTimeLabel.text = dateFormatter.string(from: startTimeDatePicker.date)
+        self.endTimeLabel.text = dateFormatter.string(from: endTimeDatePicker.date)
         
         if let event = event {
             eventNameTextField.text = event.title
@@ -75,14 +82,38 @@ class AddEventTableViewController: UITableViewController {
         }
     }
     
+    func dateFormatWithTime(date: Date?) -> String {
+        if let date = date {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MM/dd/yyyy HH:MM"
+        }
+        return ""
+    }
+    
     
     func updateDateViews() {
-        let dateFotmatter = DateFormatter()
-        dateFotmatter.dateStyle = .short
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .long
+        dateFormatter.dateFormat = "MM/dd hh:mm"
         
-        startDateLabel.text = dateFotmatter.string(from: startDatePicker.date)
-        startTimeLabel.text = dateFotmatter.string(from: startTimeDatePicker.date)
-        endTimeLabel.text = dateFotmatter.string(from: endTimeDatePicker.date)
+        let startTime = startTimeDatePicker.date
+        let startDate = startDatePicker.date
+        let endTime = endTimeDatePicker.date
+        
+        if startTime < startDate {
+            print ("time is less than date")
+            startTimeLabel.text = dateFormatter.string(from: startDate)
+            startDateLabel.text = dateFormatter.string(from: startDate)
+            endTimeLabel.text = dateFormatter.string(from: startDate.addingTimeInterval(3600))
+            startTimeDatePicker.setDate(startDate, animated: true)
+            endTimeDatePicker.setDate(startDate.addingTimeInterval(3600), animated: true)
+        }
+        
+        startTime.compare(startDate)
+        // if startDate changes update startTime
+//        startDateLabel.text = dateFotmatter.string(from: startDatePicker.date)
+//        startTimeLabel.text = dateFotmatter.string(from: startTimeDatePicker.date)
+//        endTimeLabel.text = dateFotmatter.string(from: endTimeDatePicker.date)
         
     }
     

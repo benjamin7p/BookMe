@@ -33,13 +33,12 @@ class EventsTableViewController: UITableViewController, EventAddedDelegate {
         
         switch (getIndex) {
         case 0:
-            loadEventsAll(endDateToLoad: endDateAll())
+            loadEventsWithEndDate(endDateToLoad: endDateAll())
             
         case 1:
-            loadEventsAll(endDateToLoad: endDateCreator())
-        
+            loadEventsWithEndDate(endDateToLoad: endDateCreator())
         default:
-            loadEventsAll(endDateToLoad: endDateAll())
+            loadEventsWithEndDate(endDateToLoad: endDateAll())
         }
     }
     
@@ -62,16 +61,19 @@ class EventsTableViewController: UITableViewController, EventAddedDelegate {
         super.viewDidLoad()
         
         self.tableView.backgroundColor = UIColor.lightGray
+        
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
        
         if let endDate = endDate {
-           loadEventsAll(endDateToLoad: endDate)
+            loadEventsWithEndDate(endDateToLoad: endDate)
+            
         }
         
     }
+    
     
     
     
@@ -80,14 +82,14 @@ class EventsTableViewController: UITableViewController, EventAddedDelegate {
         
         let newstartDate =  Calendar.current.startOfDay(for: Date())
         
-        let startDate = Calendar.current.date(byAdding: .hour, value: -7, to: newstartDate)
+        let startDate = Calendar.current.date(byAdding: .hour, value: -6, to: newstartDate)
         
+        let endDateAll = Date.distantFuture
         
-        if let endDate = endDate {
             
             if let calendars = EventKitController.sharedController.calendar {
                 // Use an event store instance to create and properly configure an NSPredicate
-                let eventsPredicate = eventStore.predicateForEvents(withStart: startDate!, end: endDate, calendars: [calendars])
+                let eventsPredicate = eventStore.predicateForEvents(withStart: startDate!, end: endDateAll, calendars: [calendars])
                 
                 // Use the configured NSPredicate to find and return events in the store that match
                 self.events = eventStore.events(matching: eventsPredicate).sorted(){
@@ -95,25 +97,29 @@ class EventsTableViewController: UITableViewController, EventAddedDelegate {
                     return e1.startDate.compare(e2.startDate) == ComparisonResult.orderedAscending
                 }
             }
-        }
+        
+        
         tableView.reloadData()
         
     }
     
         
     
-    
 
-    func loadEventsAll(endDateToLoad: Date) {
-
+    func loadEventsWithEndDate(endDateToLoad: Date) {
         
-        let newstartDate =  Calendar.current.startOfDay(for: Date())
         
-        let startDate = Calendar.current.date(byAdding: .hour, value: -6, to: newstartDate)
-    
+        
+        let todayAt6 =  Calendar.current.startOfDay(for: Date())
+        
+        let todayAt12 = Calendar.current.date(byAdding: .hour, value: -6, to: todayAt6)
+        
+        
+            
+            
             if let calendars = EventKitController.sharedController.calendar {
                 // Use an event store instance to create and properly configure an NSPredicate
-                let eventsPredicate = eventStore.predicateForEvents(withStart: startDate!, end: endDateToLoad, calendars: [calendars])
+                let eventsPredicate = eventStore.predicateForEvents(withStart: todayAt12!, end: endDateToLoad, calendars: [calendars])
                 
                 // Use the configured NSPredicate to find and return events in the store that match
                 self.events = eventStore.events(matching: eventsPredicate).sorted(){
@@ -121,11 +127,11 @@ class EventsTableViewController: UITableViewController, EventAddedDelegate {
                     return e1.startDate.compare(e2.startDate) == ComparisonResult.orderedAscending
                 }
             }
+            
+            tableView.reloadData()
         
-        tableView.reloadData()
         
     }
-    
     func eventDidAdd() {
         segmentedBar.selectedSegmentIndex = 1
         tableView.reloadData()
