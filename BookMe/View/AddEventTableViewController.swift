@@ -254,11 +254,11 @@ class AddEventTableViewController: UITableViewController {
             case (eventNotesCellIndexPath.section, eventNotesCellIndexPath.row - 1):
                 if isEventNotesShown {
                     isEventNotesShown = false
-                    eventNotesLabel.text = "Add Notes"
+                    eventNotesLabel.text = "Open"
                     eventNotesTextView.text = eventNotesTextView.text
                 } else {
                     isEventNotesShown = true
-                    eventNotesLabel.text = "Save Notes"
+                    eventNotesLabel.text = "Close"
                     eventNotesTextView.text = eventNotesTextView.text
                 }
             

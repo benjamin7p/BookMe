@@ -109,7 +109,7 @@ class EventsTableViewController: UITableViewController, EventAddedDelegate {
         
         let newstartDate =  Calendar.current.startOfDay(for: Date())
         
-        let startDate = Calendar.current.date(byAdding: .hour, value: -7, to: newstartDate)
+        let startDate = Calendar.current.date(byAdding: .hour, value: -6, to: newstartDate)
     
             if let calendars = EventKitController.sharedController.calendar {
                 // Use an event store instance to create and properly configure an NSPredicate
