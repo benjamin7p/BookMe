@@ -60,7 +60,7 @@ class EventsTableViewController: UITableViewController, EventAddedDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.backgroundColor = UIColor.lightGray
+        //self.tableView.backgroundColor = UIColor.lightGray
         
 
     }
@@ -153,7 +153,7 @@ class EventsTableViewController: UITableViewController, EventAddedDelegate {
     func dateFormatWithTime(date: Date?) -> String {
         if let date = date {
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "MM/dd/yyyy HH:MM"
+            dateFormatter.dateFormat = "MM/dd HH:MM"
         }
         return ""
     }
@@ -164,8 +164,8 @@ class EventsTableViewController: UITableViewController, EventAddedDelegate {
 
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.backgroundColor = UIColor.clear
-        cell.textLabel?.textColor = UIColor.black
+        //cell.backgroundColor = UIColor.clear
+        //cell.textLabel?.textColor = UIColor.black
     }
     
 //    override func numberOfSections(in tableView: UITableView) -> Int {

@@ -59,23 +59,45 @@ class AddEventTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.startDatePicker.setDate(EventKitController.sharedController.initialDatePickerValue(), animated: true)
-        self.startTimeDatePicker.setDate(EventKitController.sharedController.initialDatePickerValue(), animated: true)
-        self.endTimeDatePicker.setDate(EventKitController.sharedController.initialDatePickerValue().addingTimeInterval(3600), animated: true)
+        let defaultStartDate = EventKitController.sharedController.initialDatePickerValue()
+        let defaultEndDate = defaultStartDate.addingTimeInterval(3600)
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .long
-        dateFormatter.dateFormat = "MM/dd hh:mm"
+        startDatePicker.setDate(defaultStartDate, animated: true)
+        startTimeDatePicker.setDate(defaultStartDate, animated: true)
+        endTimeDatePicker.setDate(defaultEndDate, animated: true)
         
-        self.startDateLabel.text = dateFormatter.string(from: startDatePicker.date)
-        self.startTimeLabel.text = dateFormatter.string(from: startTimeDatePicker.date)
-        self.endTimeLabel.text = dateFormatter.string(from: endTimeDatePicker.date)
         
+        let dateFormatterForStartDate = DateFormatter()
+        dateFormatterForStartDate.dateFormat = "MM/dd"
+        let dateFormatterForTime = DateFormatter()
+        dateFormatterForTime.dateFormat = "hh:mm"
+        
+        
+        
+        startDateLabel.text = dateFormatterForStartDate.string(from: startDatePicker.date)
+        startTimeLabel.text = dateFormatterForTime.string(from: startTimeDatePicker.date)
+        endTimeLabel.text = dateFormatterForTime.string(from: endTimeDatePicker.date)
+        
+//        self.startDatePicker.setDate(EventKitController.sharedController.initialDatePickerValue(), animated: true)
+//        self.startTimeDatePicker.setDate(EventKitController.sharedController.initialDatePickerValue(), animated: true)
+//        self.endTimeDatePicker.setDate(EventKitController.sharedController.initialDatePickerValue().addingTimeInterval(3600), animated: true)
+        
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateStyle = .long
+//        dateFormatter.dateFormat = "MM/dd hh:mm"
+//
+//        self.startDateLabel.text = dateFormatter.string(from: startDatePicker.date)
+//        self.startTimeLabel.text = dateFormatter.string(from: startTimeDatePicker.date)
+//        self.endTimeLabel.text = dateFormatter.string(from: endTimeDatePicker.date)
+//
         if let event = event {
             eventNameTextField.text = event.title
-            startDatePicker.date = event.startDate
+            startDatePicker.setDate(event.startDate, animated: true)
+            startDateLabel.text = dateFormatterForStartDate.string(from: startDatePicker.date)
             startTimeDatePicker.date = event.startDate
+            startTimeLabel.text = dateFormatterForTime.string(from: startTimeDatePicker.date)
             endTimeDatePicker.date = event.endDate
+            endTimeLabel.text = dateFormatterForTime.string(from: endTimeDatePicker.date)
             eventNotesTextView.text = event.notes
             
             tableView.reloadData()
@@ -92,22 +114,26 @@ class AddEventTableViewController: UITableViewController {
     
     
     func updateDateViews() {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .long
-        dateFormatter.dateFormat = "MM/dd hh:mm"
+        let dateFormatterForStartDate = DateFormatter()
+        dateFormatterForStartDate.dateFormat = "MM/dd"
+        let dateFormatterForTime = DateFormatter()
+        dateFormatterForTime.dateFormat = "hh:mm"
         
         let startTime = startTimeDatePicker.date
         let startDate = startDatePicker.date
         let endTime = endTimeDatePicker.date
         
         if startTime < startDate {
-            print ("time is less than date")
-            startTimeLabel.text = dateFormatter.string(from: startDate)
-            startDateLabel.text = dateFormatter.string(from: startDate)
-            endTimeLabel.text = dateFormatter.string(from: startDate.addingTimeInterval(3600))
+            
+            startTimeLabel.text = dateFormatterForTime.string(from: startDate)
+            startDateLabel.text = dateFormatterForStartDate.string(from: startDate)
+            endTimeLabel.text = dateFormatterForTime.string(from: startDate.addingTimeInterval(3600))
             startTimeDatePicker.setDate(startDate, animated: true)
             endTimeDatePicker.setDate(startDate.addingTimeInterval(3600), animated: true)
+            endTimeLabel.text = dateFormatterForTime.string(from: startDate)
         }
+        
+       // endTimeLabel.text = dateFormatter.string(from: startDate)
         
         startTime.compare(startDate)
         // if startDate changes update startTime
@@ -131,7 +157,7 @@ class AddEventTableViewController: UITableViewController {
         let newEvent = EKEvent(eventStore: EventKitController.sharedController.eventStore)
         
         newEvent.calendar = EventKitController.sharedController.calendar
-        newEvent.title = self.eventNameTextField.text ?? "Event Name"
+        newEvent.title = self.eventNameTextField.text ?? "Name"
         newEvent.startDate = self.startTimeDatePicker.date
         newEvent.endDate = self.endTimeDatePicker.date
         newEvent.notes = self.eventNotesTextView.text ?? ""
@@ -161,10 +187,23 @@ class AddEventTableViewController: UITableViewController {
     
     @IBAction func startTimeDatePickerValueChanged(_ sender: Any) {
         updateDateViews()
+        
+        let dateFormatterForTime = DateFormatter()
+        dateFormatterForTime.dateFormat = "hh:mm"
+        
+        startTimeLabel.text = dateFormatterForTime.string(from: startTimeDatePicker.date)
+        endTimeLabel.text = dateFormatterForTime.string(from: startTimeDatePicker.date.addingTimeInterval(3600))
+        endTimeDatePicker.setDate(startTimeDatePicker.date.addingTimeInterval(3600), animated: true)
     }
     
     @IBAction func endTimeDatePickerValueChanged(_ sender: Any) {
         updateDateViews()
+        
+        let dateFormatterForTime = DateFormatter()
+        dateFormatterForTime.dateFormat = "hh:mm"
+        
+        endTimeLabel.text = dateFormatterForTime.string(from: endTimeDatePicker.date)
+        
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {

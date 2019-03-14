@@ -13,18 +13,42 @@ class WelcomeViewController: UIViewController {
 
     @IBOutlet weak var grantedPermissionView: UIView!
     @IBOutlet weak var needPermissionView: UIView!
-   
-   
-   
+    @IBOutlet weak var viewTodayAppointmentsButton: UIButton!
+    @IBOutlet weak var viewAllAppointmentsButton: UIButton!
+    
+    @IBAction func viewTodayButtonTapped(_ sender: Any) {
+        UIView.animate(withDuration: 0.1) {
+            self.viewTodayAppointmentsButton.transform = CGAffineTransform(scaleX: 5.0, y: 5.0)
+            self.viewTodayAppointmentsButton.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+        }
+    }
+    
+    @IBAction func viewAllButtonTapped(_ sender: Any) {
+        UIView.animate(withDuration: 0.1) {
+        self.viewAllAppointmentsButton.transform = CGAffineTransform(scaleX: 5.0, y: 5.0)
+        self.viewAllAppointmentsButton.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+        }
+        
+    }
+    
     var calendar: EKCalendar?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //calendars = EventKitController.sharedContoller.calendar
         
+        viewTodayAppointmentsButton.layer.cornerRadius = 5.0
+        viewAllAppointmentsButton.layer.cornerRadius = 5.0
         
+        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImage.image = UIImage(named: "WelcomeBackGround")
+        backgroundImage.contentMode = UIView.ContentMode.scaleToFill
+        self.grantedPermissionView.insertSubview(backgroundImage, at: 0)
         
     }
+    
+
+    
     
     override func viewWillAppear(_ animated: Bool) {
        checkCalendarAuthorizationStatus()
