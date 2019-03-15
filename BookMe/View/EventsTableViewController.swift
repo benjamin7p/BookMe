@@ -9,7 +9,7 @@
 import UIKit
 import EventKit
 
-class EventsTableViewController: UITableViewController, EventAddedDelegate {
+class EventsTableViewController: UITableViewController {
     
     var events: [EKEvent]?
     
@@ -42,6 +42,23 @@ class EventsTableViewController: UITableViewController, EventAddedDelegate {
         }
     }
     
+//    func deleteOldEvents(eventsToDelete: [EKEvent]) {
+//        for events in eventsToDelete {
+//        if events.startDate < Date() {
+//            print("it works")
+////            let eventStore = EventKitController.sharedController.eventStore
+////            if let calendars = EventKitController.sharedController.calendar {
+////                let eventsPredicate = eventStore.predicateForEvents(withStart: eventToDelete.startDate, end: eventToDelete.endDate, calendars: [calendars])
+////                self.events = eventStore.events(matching: eventsPredicate).sorted(){
+////                    (e1: EKEvent, e2: EKEvent) -> Bool in
+////                    return e1.startDate.compare(e2.startDate) == ComparisonResult.orderedAscending
+////                }
+////                print(eventToDelete)
+////                try? eventStore.remove(eventToDelete, span: .thisEvent)
+////            }
+//        }
+//    }
+//    }
     func endDateCreator() -> Date {
         let startDate =  Calendar.current.startOfDay(for: Date())
         let tomorrowStartDate =  Calendar.current.date(byAdding: .day, value: 1, to: startDate) ?? startDate
@@ -59,6 +76,9 @@ class EventsTableViewController: UITableViewController, EventAddedDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+           
         
         //self.tableView.backgroundColor = UIColor.lightGray
         

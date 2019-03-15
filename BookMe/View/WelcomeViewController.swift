@@ -15,6 +15,7 @@ class WelcomeViewController: UIViewController {
     @IBOutlet weak var needPermissionView: UIView!
     @IBOutlet weak var viewTodayAppointmentsButton: UIButton!
     @IBOutlet weak var viewAllAppointmentsButton: UIButton!
+    @IBOutlet weak var iconImageView: UIImageView!
     
     @IBAction func viewTodayButtonTapped(_ sender: Any) {
         UIView.animate(withDuration: 0.1) {
@@ -34,19 +35,23 @@ class WelcomeViewController: UIViewController {
     var calendar: EKCalendar?
     
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         viewTodayAppointmentsButton.layer.cornerRadius = 5.0
         viewAllAppointmentsButton.layer.cornerRadius = 5.0
+        //iconImageView.layer.cornerRadius = 5.0
         
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
         backgroundImage.image = UIImage(named: "WelcomeBackGround")
         backgroundImage.contentMode = UIView.ContentMode.scaleToFill
         self.grantedPermissionView.insertSubview(backgroundImage, at: 0)
         
-    }
+        checkCalendarAuthorizationStatus()
     
+    }
 
     
     
@@ -156,6 +161,9 @@ class WelcomeViewController: UIViewController {
         }
     }
     
-
-
+    @IBAction func goToSettingsButtonTapped(_ sender: UIButton) {
+        let openSettingsUrl = URL(string: UIApplication.openSettingsURLString)
+        UIApplication.shared.open(openSettingsUrl!, options: [:], completionHandler: nil)
+    }
 }
+

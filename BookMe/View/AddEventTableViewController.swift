@@ -133,23 +133,29 @@ class AddEventTableViewController: UITableViewController {
             endTimeLabel.text = dateFormatterForTime.string(from: startDate)
         }
         
-       // endTimeLabel.text = dateFormatter.string(from: startDate)
+        // endTimeLabel.text = dateFormatter.string(from: startDate)
         
         startTime.compare(startDate)
         // if startDate changes update startTime
-//        startDateLabel.text = dateFotmatter.string(from: startDatePicker.date)
-//        startTimeLabel.text = dateFotmatter.string(from: startTimeDatePicker.date)
-//        endTimeLabel.text = dateFotmatter.string(from: endTimeDatePicker.date)
+        //        startDateLabel.text = dateFotmatter.string(from: startDatePicker.date)
+        //        startTimeLabel.text = dateFotmatter.string(from: startTimeDatePicker.date)
+        //        endTimeLabel.text = dateFotmatter.string(from: endTimeDatePicker.date)
         
     }
-    
-    
-    func editEvent() {
-        if let event = event {
-            EventsTableViewController.sharedController.deleteThisEvent(eventToDelete: event)
-        }
+
+
+func editEvent() {
+    if let event = event {
+        EventsTableViewController.sharedController.deleteThisEvent(eventToDelete: event)
     }
+}
+
     
+    
+    
+
+    
+   
     
     func createEvent()  {
         
