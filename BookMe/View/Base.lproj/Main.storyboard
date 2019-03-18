@@ -18,40 +18,53 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ISI-sP-NpN">
-                                <rect key="frame" x="0.0" y="64" width="71" height="20.5"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eXP-Vv-dA2">
-                                <rect key="frame" x="16" y="64" width="343" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hgc-HX-bzd" userLabel="grantedPermissionView">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B2V-bt-h24" userLabel="grantedPermissionView">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nmE-xm-aSd">
-                                        <rect key="frame" x="16" y="542" width="343" height="40"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eXP-Vv-dA2">
+                                        <rect key="frame" x="16" y="8" width="343" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="4md-fG-hYa"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fJQ-dv-FBR">
+                                        <rect key="frame" x="16" y="543" width="343" height="40"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="nWy-jx-WLI"/>
+                                        </constraints>
+                                        <state key="normal" title="  View In Calendar" image="apple">
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="calendarApp:" destination="Ro4-SH-jmd" eventType="touchUpInside" id="NzL-3M-iZh"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nmE-xm-aSd">
+                                        <rect key="frame" x="16" y="495" width="343" height="40"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="IUE-xf-KGI"/>
+                                        </constraints>
                                         <state key="normal" title="  All Appointments" image="viewCalendarMini">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <color key="titleShadowColor" red="0.86467778500000003" green="0.046487561619999999" blue="0.082766858439999993" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="viewAllButtonTapped:" destination="Ro4-SH-jmd" eventType="touchUpInside" id="7Ph-4d-cXI"/>
                                             <segue destination="2cm-4e-vsZ" kind="show" identifier="viewAllEvents" id="zPX-EE-A8Q"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KlL-2Z-cuJ">
-                                        <rect key="frame" x="16" y="481" width="343" height="40"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KlL-2Z-cuJ">
+                                        <rect key="frame" x="16" y="447" width="343" height="40"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="HfJ-22-8lp"/>
+                                        </constraints>
                                         <state key="normal" title="  Todays Appointments" image="singleCalendarMini">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <color key="titleShadowColor" red="0.86467778500000003" green="0.046487561619999999" blue="0.082766858439999993" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="viewTodayButtonTapped:" destination="Ro4-SH-jmd" eventType="touchUpInside" id="QjW-Tt-VC4"/>
@@ -60,49 +73,86 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="fJQ-dv-FBR" secondAttribute="trailing" constant="16" id="6Qp-q4-1Ke"/>
+                                    <constraint firstItem="eXP-Vv-dA2" firstAttribute="top" secondItem="B2V-bt-h24" secondAttribute="top" constant="8" id="7hv-Re-fpA"/>
+                                    <constraint firstAttribute="bottom" secondItem="fJQ-dv-FBR" secondAttribute="bottom" constant="20" id="BSh-z8-gll"/>
+                                    <constraint firstItem="fJQ-dv-FBR" firstAttribute="top" secondItem="nmE-xm-aSd" secondAttribute="bottom" constant="8" id="KXk-fy-0mF"/>
+                                    <constraint firstItem="nmE-xm-aSd" firstAttribute="top" secondItem="KlL-2Z-cuJ" secondAttribute="bottom" constant="8" id="MFF-wh-crY"/>
+                                    <constraint firstAttribute="trailing" secondItem="KlL-2Z-cuJ" secondAttribute="trailing" constant="16" id="O72-pw-oZG"/>
+                                    <constraint firstItem="fJQ-dv-FBR" firstAttribute="leading" secondItem="B2V-bt-h24" secondAttribute="leading" constant="16" id="grj-sB-Daj"/>
+                                    <constraint firstItem="KlL-2Z-cuJ" firstAttribute="leading" secondItem="B2V-bt-h24" secondAttribute="leading" constant="16" id="hft-r7-MuF"/>
+                                    <constraint firstItem="nmE-xm-aSd" firstAttribute="leading" secondItem="B2V-bt-h24" secondAttribute="leading" constant="16" id="oph-OB-cN2"/>
+                                    <constraint firstAttribute="trailing" secondItem="nmE-xm-aSd" secondAttribute="trailing" constant="16" id="uhA-LM-nSC"/>
+                                    <constraint firstAttribute="trailing" secondItem="eXP-Vv-dA2" secondAttribute="trailing" constant="16" id="uwD-ti-4QS"/>
+                                    <constraint firstItem="eXP-Vv-dA2" firstAttribute="leading" secondItem="B2V-bt-h24" secondAttribute="leading" constant="16" id="wYC-5L-Ojg"/>
+                                </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mn6-mn-Q2Z" userLabel="needPermissionView">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e97-bi-xy0">
-                                        <rect key="frame" x="16" y="417" width="343" height="30"/>
-                                        <state key="normal" title="This App needs access to your calendar"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Settings" translatesAutoresizingMaskIntoConstraints="NO" id="YpZ-kV-pdh">
+                                        <rect key="frame" x="150" y="264" width="75" height="75"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="75" id="0sA-55-IQD"/>
+                                            <constraint firstAttribute="width" constant="75" id="kCp-1v-Sm9"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This App requiers access to your calendar" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oFv-ey-gGr">
+                                        <rect key="frame" x="16" y="347" width="343" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="VMW-Cu-DDw"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G2H-bh-RQN">
+                                        <rect key="frame" x="16" y="376" width="343" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="Jui-5Y-qiR"/>
+                                        </constraints>
+                                        <state key="normal" title="Open Settings"/>
                                         <connections>
-                                            <action selector="goToSettingsButtonTapped:" destination="Ro4-SH-jmd" eventType="touchUpInside" id="eaK-aJ-qm7"/>
+                                            <action selector="goToSettingsButtonTapped:" destination="Ro4-SH-jmd" eventType="touchUpInside" id="c3r-nf-tsk"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="e97-bi-xy0" secondAttribute="bottom" constant="156" id="EJS-ce-0zF"/>
-                                    <constraint firstItem="e97-bi-xy0" firstAttribute="leading" secondItem="mn6-mn-Q2Z" secondAttribute="leading" constant="16" id="Pyc-Cl-dKR"/>
-                                    <constraint firstAttribute="trailing" secondItem="e97-bi-xy0" secondAttribute="trailing" constant="16" id="ZWO-IJ-V9M"/>
+                                    <constraint firstAttribute="trailing" secondItem="oFv-ey-gGr" secondAttribute="trailing" constant="16" id="67v-7O-75M"/>
+                                    <constraint firstItem="G2H-bh-RQN" firstAttribute="leading" secondItem="mn6-mn-Q2Z" secondAttribute="leading" constant="16" id="HT2-Xg-DGR"/>
+                                    <constraint firstItem="oFv-ey-gGr" firstAttribute="top" secondItem="YpZ-kV-pdh" secondAttribute="bottom" constant="8" id="JbJ-gU-Nl4"/>
+                                    <constraint firstAttribute="trailing" secondItem="G2H-bh-RQN" secondAttribute="trailing" constant="16" id="NTc-kR-WZ2"/>
+                                    <constraint firstItem="oFv-ey-gGr" firstAttribute="leading" secondItem="mn6-mn-Q2Z" secondAttribute="leading" constant="16" id="QP1-1w-hGk"/>
+                                    <constraint firstItem="YpZ-kV-pdh" firstAttribute="centerX" secondItem="mn6-mn-Q2Z" secondAttribute="centerX" id="lTU-Tx-pcI"/>
+                                    <constraint firstItem="G2H-bh-RQN" firstAttribute="top" secondItem="oFv-ey-gGr" secondAttribute="bottom" constant="8" id="rgd-rg-v3y"/>
+                                    <constraint firstItem="YpZ-kV-pdh" firstAttribute="centerY" secondItem="mn6-mn-Q2Z" secondAttribute="centerY" id="vik-Zy-0f0"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="mn6-mn-Q2Z" firstAttribute="bottom" secondItem="qhr-Gc-RN2" secondAttribute="bottom" id="OwO-E8-VDT"/>
-                            <constraint firstItem="mn6-mn-Q2Z" firstAttribute="top" secondItem="qhr-Gc-RN2" secondAttribute="top" id="Qiz-LW-c8M"/>
-                            <constraint firstItem="qhr-Gc-RN2" firstAttribute="trailing" secondItem="eXP-Vv-dA2" secondAttribute="trailing" constant="16" id="bVI-ah-26w"/>
-                            <constraint firstItem="eXP-Vv-dA2" firstAttribute="top" secondItem="qhr-Gc-RN2" secondAttribute="top" id="cVF-h0-HSU"/>
-                            <constraint firstItem="mn6-mn-Q2Z" firstAttribute="trailing" secondItem="qhr-Gc-RN2" secondAttribute="trailing" id="uL7-EY-ZX6"/>
-                            <constraint firstItem="mn6-mn-Q2Z" firstAttribute="leading" secondItem="qhr-Gc-RN2" secondAttribute="leading" id="vgO-td-Gvh"/>
-                            <constraint firstItem="eXP-Vv-dA2" firstAttribute="leading" secondItem="qhr-Gc-RN2" secondAttribute="leading" constant="16" id="y33-1C-y7f"/>
+                            <constraint firstItem="qhr-Gc-RN2" firstAttribute="trailing" secondItem="mn6-mn-Q2Z" secondAttribute="trailing" id="1R3-ya-cJN"/>
+                            <constraint firstItem="B2V-bt-h24" firstAttribute="centerX" secondItem="qhr-Gc-RN2" secondAttribute="centerX" id="DY1-mz-btt"/>
+                            <constraint firstItem="mn6-mn-Q2Z" firstAttribute="top" secondItem="qhr-Gc-RN2" secondAttribute="top" id="KHl-rA-QDm"/>
+                            <constraint firstItem="qhr-Gc-RN2" firstAttribute="bottom" secondItem="mn6-mn-Q2Z" secondAttribute="bottom" id="LkT-PF-NcD"/>
+                            <constraint firstItem="qhr-Gc-RN2" firstAttribute="trailing" secondItem="B2V-bt-h24" secondAttribute="trailing" id="UDj-50-Wp1"/>
+                            <constraint firstItem="B2V-bt-h24" firstAttribute="top" secondItem="qhr-Gc-RN2" secondAttribute="top" id="XAN-Vo-gMG"/>
+                            <constraint firstItem="qhr-Gc-RN2" firstAttribute="bottom" secondItem="B2V-bt-h24" secondAttribute="bottom" id="YzP-mk-Ipr"/>
+                            <constraint firstItem="B2V-bt-h24" firstAttribute="centerY" secondItem="qhr-Gc-RN2" secondAttribute="centerY" id="e9D-nG-AGW"/>
+                            <constraint firstItem="B2V-bt-h24" firstAttribute="leading" secondItem="qhr-Gc-RN2" secondAttribute="leading" id="gBl-Dq-w4k"/>
+                            <constraint firstItem="mn6-mn-Q2Z" firstAttribute="leading" secondItem="qhr-Gc-RN2" secondAttribute="leading" id="hxj-Pe-5Yu"/>
+                            <constraint firstItem="mn6-mn-Q2Z" firstAttribute="centerX" secondItem="qhr-Gc-RN2" secondAttribute="centerX" id="m26-pZ-f0K"/>
+                            <constraint firstItem="mn6-mn-Q2Z" firstAttribute="centerY" secondItem="qhr-Gc-RN2" secondAttribute="centerY" id="wfm-XZ-etM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qhr-Gc-RN2"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="hgc-HX-bzd"/>
-                                <exclude reference="mn6-mn-Q2Z"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="UkG-xf-Q7R"/>
                     <connections>
-                        <outlet property="grantedPermissionView" destination="hgc-HX-bzd" id="akd-LW-0RN"/>
+                        <outlet property="grantedPermissionView" destination="B2V-bt-h24" id="JqX-bz-LMb"/>
                         <outlet property="needPermissionView" destination="mn6-mn-Q2Z" id="nNf-St-0cC"/>
                         <outlet property="viewAllAppointmentsButton" destination="nmE-xm-aSd" id="q07-RD-cP0"/>
+                        <outlet property="viewInCalendarButton" destination="fJQ-dv-FBR" id="T68-CR-U5N"/>
                         <outlet property="viewTodayAppointmentsButton" destination="KlL-2Z-cuJ" id="suc-rG-RJV"/>
                     </connections>
                 </viewController>
@@ -487,6 +537,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Settings" width="75" height="75"/>
+        <image name="apple" width="18.75" height="18.75"/>
         <image name="singleCalendarMini" width="18.75" height="18.75"/>
         <image name="viewCalendarMini" width="18.75" height="18.75"/>
     </resources>
